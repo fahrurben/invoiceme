@@ -8,7 +8,6 @@
 
 namespace App\Domain\Company\Models;
 
-use App\User;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 
@@ -26,9 +25,9 @@ class Company
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\User")
+     * @ORM\OneToOne(targetEntity="App\Domain\Auth\Models\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
-     * @var User
+     * @var User $user
      */
     protected $user;
 
