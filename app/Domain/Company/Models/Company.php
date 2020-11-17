@@ -8,6 +8,7 @@
 
 namespace App\Domain\Company\Models;
 
+use App\Domain\Auth\Models\User;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 

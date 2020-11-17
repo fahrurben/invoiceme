@@ -15,7 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\App\Domain\Auth\Repositories\UserRepository")
  * @ORM\Table(name="users")
  */
 class User extends Authenticatable implements JWTSubject
@@ -58,22 +58,6 @@ class User extends Authenticatable implements JWTSubject
     public function setId($id): void
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTenantId()
-    {
-        return $this->tenantId;
-    }
-
-    /**
-     * @param mixed $tenantId
-     */
-    public function setTenantId($tenantId): void
-    {
-        $this->tenantId = $tenantId;
     }
 
     /**
