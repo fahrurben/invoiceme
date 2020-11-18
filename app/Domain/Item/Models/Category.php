@@ -8,15 +8,18 @@
 
 namespace App\Domain\Item\Models;
 
+use App\Domain\MultiTenantEntity;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\App\Domain\Item\Repositories\CategoryRepository")
  * @ORM\Table(name="item_category")
  */
 class Category
 {
+    use MultiTenantEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -33,11 +36,6 @@ class Category
      * @ORM\Column(name="is_active", type="boolean")
      */
     protected $isActive;
-
-    /**
-     * @ORM\Column(name="company_id", type="integer")
-     */
-    protected $companyId;
 
     public function __construct()
     {
@@ -89,22 +87,6 @@ class Category
     public function setIsActive(bool $isActive)
     {
         $this->isActive = $isActive;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCompanyId(): ?int
-    {
-        return $this->companyId;
-    }
-
-    /**
-     * @param int $companyId
-     */
-    public function setCompanyId(int $companyId): void
-    {
-        $this->companyId = $companyId;
     }
 
 }
