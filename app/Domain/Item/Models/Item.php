@@ -11,6 +11,10 @@ namespace App\Domain\Item\Models;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity(repositoryClass="\App\Domain\Item\Repositories\ItemRepository")
+ * @ORM\Table(name="item")
+ */
 class Item
 {
     /**
