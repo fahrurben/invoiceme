@@ -13,7 +13,7 @@ use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\App\Domain\Invoice\Repositories\LineRepository")
  * @ORM\Table(name="invoice_line")
  */
 class Line
@@ -26,13 +26,13 @@ class Line
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Invoice)
+     * @ORM\ManyToOne(targetEntity="Invoice")
      * @ORM\JoinColumn(name="invoice_id", nullable=false)
      */
     protected $invoice;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Domain\Item\Models\Item)
+     * @ORM\OneToOne(targetEntity="App\Domain\Item\Models\Item")
      * @ORM\JoinColumn(name="item_id")
      */
     protected $item;

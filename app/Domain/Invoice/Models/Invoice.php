@@ -8,15 +8,18 @@
 
 namespace App\Domain\Invoice\Models;
 
+use App\Domain\MultiTenantEntity;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\App\Domain\Invoice\Repositories\InvoiceRepository")
  * @ORM\Table(name="invoice")
  */
 class Invoice
 {
+    use MultiTenantEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -189,6 +192,15 @@ class Invoice
     public function setLines(array $lines): void
     {
         $this->lines = $lines;
+    }
+
+    /**
+     * @param Line $line
+     */
+    public function addLine(Line $line): void
+    {
+        $line->setInvoice($this);
+        $this->lines[] = $line;
     }
 
     /**
