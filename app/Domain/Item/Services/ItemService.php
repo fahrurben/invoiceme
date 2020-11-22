@@ -53,7 +53,7 @@ class ItemService implements ItemServiceInterface
      * @param ItemDto $itemDto
      * @throws \Exception
      */
-    public function create(ItemDto $itemDto)
+    public function create(ItemDto $itemDto): Item
     {
         $validator = $itemDto->getValidator();
         $validator->validate();
@@ -87,6 +87,8 @@ class ItemService implements ItemServiceInterface
 
         $this->entityManager->persist($item);
         $this->entityManager->flush();
+
+        return $item;
     }
 
     /**
@@ -94,7 +96,7 @@ class ItemService implements ItemServiceInterface
      * @param ItemDto $itemDto
      * @throws \Exception
      */
-    public function update(int $id, ItemDto $itemDto)
+    public function update(int $id, ItemDto $itemDto): Item
     {
         $validator = $itemDto->getValidator();
         $validator->validate();
@@ -130,6 +132,8 @@ class ItemService implements ItemServiceInterface
 
         $this->entityManager->persist($item);
         $this->entityManager->flush();
+
+        return $item;
     }
 
     /**

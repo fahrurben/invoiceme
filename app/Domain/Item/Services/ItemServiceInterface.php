@@ -9,13 +9,14 @@
 namespace App\Domain\Item\Services;
 
 
+use App\Domain\Item\Models\Item;
 use App\Domain\Item\Models\ItemDto;
 
 interface ItemServiceInterface
 {
-    public function create(ItemDto $itemDto);
+    public function create(ItemDto $itemDto): Item;
 
-    public function update(int $id, ItemDto $itemDto);
+    public function update(int $id, ItemDto $itemDto): Item;
 
     public function delete(int $id);
 }

@@ -40,7 +40,7 @@ class CategoryService implements CategoryServiceInterface
      * @param CategoryDto $categoryDto
      * @throws \Exception
      */
-    public function create(CategoryDto $categoryDto)
+    public function create(CategoryDto $categoryDto): Category
     {
         $validator = $categoryDto->getValidator();
         $validator->validate();
@@ -63,6 +63,8 @@ class CategoryService implements CategoryServiceInterface
 
         $this->entityManager->persist($category);
         $this->entityManager->flush();
+
+        return $category;
     }
 
     /**
@@ -70,7 +72,7 @@ class CategoryService implements CategoryServiceInterface
      * @param CategoryDto $categoryDto
      * @throws \Exception
      */
-    public function update(int $id, CategoryDto $categoryDto)
+    public function update(int $id, CategoryDto $categoryDto): Category
     {
         $validator = $categoryDto->getUpdateValidator();
         $validator->validate();
@@ -93,6 +95,8 @@ class CategoryService implements CategoryServiceInterface
 
         $this->entityManager->persist($category);
         $this->entityManager->flush();
+
+        return $category;
     }
 
     /**
