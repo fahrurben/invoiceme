@@ -152,7 +152,11 @@ class InvoiceService implements InvoiceServiceInterface
             $amount = $line->getQty() * $line->getPrice();
             $line->setAmount($amount);
 
-            $invoice->addLine($line);
+            if (isset($lineDto->id)) {
+                $invoice->addLine($line);
+            } else {
+                $this->entityManager->persist($line);
+            }
             $subTotal += $amount;
         }
 
