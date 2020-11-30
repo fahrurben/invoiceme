@@ -12316,3 +12316,13 @@ h3 {
   color: #fff;
   background: #6d7fcc;
 }
+
+#form-title {
+  padding: 10px 25px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.main-wrapper {
+  padding: 15px;
+}
