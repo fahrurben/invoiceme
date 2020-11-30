@@ -4,3 +4,45 @@
 
 // 4. Import UIkit.
 @import "uikit/src/scss/uikit-theme.scss";
+
+
+#root {
+  min-height: 100vh;
+}
+
+// https://bootstrapious.com/p/bootstrap-sidebar
+#sidebar {
+  width: 250px;
+  background: #7386D5;
+  color: #fff;
+  transition: all 0.3s;
+
+  .sidebar-header {
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    background: #6d7fcc;
+  }
+
+  ul p {
+    color: #fff;
+    padding: 10px;
+  }
+
+  ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+
+    &:hover {
+      color: #7386D5;
+      background: #fff;
+    }
+  }
+
+  ul li.uk-active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+  }
+}

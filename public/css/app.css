@@ -12282,3 +12282,37 @@ h3 {
     page-break-after: avoid;
   }
 }
+#root {
+  min-height: 100vh;
+}
+
+#sidebar {
+  width: 250px;
+  background: #7386D5;
+  color: #fff;
+  transition: all 0.3s;
+}
+#sidebar .sidebar-header {
+  padding: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  background: #6d7fcc;
+}
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+  color: #fff;
+}
+#sidebar ul li a:hover {
+  color: #7386D5;
+  background: #fff;
+}
+#sidebar ul li.uk-active > a, #sidebar a[aria-expanded=true] {
+  color: #fff;
+  background: #6d7fcc;
+}
