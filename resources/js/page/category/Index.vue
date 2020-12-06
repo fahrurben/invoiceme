@@ -30,57 +30,21 @@
                 <td>{{item.name}}</td>
                 <td>{{item.isActive ? 'Yes' : 'No'}}</td>
                 <td>
-                    <a href="" class="uk-icon-link" uk-icon="pencil"></a>
-                    <a href="" class="uk-icon-link" uk-icon="trash"></a>
+                    <a href="" class="uk-icon-link uk-margin-small-right" uk-icon="pencil"></a>
+                    <a href="" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
                 </td>
             </tr>
             </tbody>
         </table>
-        <ul v-if="initialTotalPage > 1" class="uk-pagination uk-flex-center" uk-margin>
-            <li v-if="page > 1"><a href="#" @click="gotoPage(page-1)"><span uk-pagination-previous></span></a></li>
-            <li v-for="(item, index) in arrPage" key="index" :class="{ 'uk-active' : index + 1 == page}">
-                <a v-if="(index + 1) == page" href="#" @click="gotoPage(index+1)">{{index+1}}</a>
-                <a v-else href="#" @click="gotoPage(index+1)">{{index+1}}</a>
-            </li>
-            <li v-if="page + 1 < initialTotalPage"><a href="#" @click="gotoPage(page+1)"><span uk-pagination-next></span></a></li>
-        </ul>
+        <pagination :page="page" :initial-total-page="initialTotalPage" :arr-page="arrPage" @gotoPage="gotoPage"/>
     </div>
     <div id="modal-create" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            <form class="uk-form-horizontal">
-                <fieldset class="uk-fieldset">
-
-                    <legend class="uk-legend">Create</legend>
-
-                    <div v-if="create.error != ''"  class="uk-alert-danger" uk-alert>
-                        <p>{{create.error}}</p>
-                    </div>
-
-                    <div v-if="isLoading != true">
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="name">Name <span class="uk-text-danger">*</span></label>
-                            <div class="uk-form-controls">
-                                <input :class="{ 'uk-input': true, 'uk-form-danger' : formValidation.name != ''}" id="name" type="text" v-model="create.name">
-                                <div v-if="formValidation.name != ''" class="uk-text-danger">{{formValidation.name}}</div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div v-else>
-                        <div uk-spinner></div>
-                    </div>
-
-                </fieldset>
-            </form>
-            <div class="uk-text-right">
-                <div v-if="isLoading != true">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                    &nbsp;
-                    <button class="uk-button uk-button-primary" type="button" @click="createSubmit">Save</button>
-                </div>
-            </div>
+            <form-category
+                    :form-default="create"
+                    :form-validation="formValidation"
+                    @submit="createSubmit">
+            </form-category>
         </div>
     </div>
 </template>
@@ -89,12 +53,14 @@
     import axios from 'axios'
     import * as _ from 'lodash'
     import queryString from 'querystring'
+    import Pagination from "../common/Pagination";
 
     let createDefault = { error: "", name: "" }
     let validationDefault = { name: "" }
 
     export default {
         name: "CategoryIndex",
+        components: {Pagination},
         props: [
             'initialPage',
             'initialTotalPage',
@@ -135,16 +101,16 @@
                 this.formValidation = { ...validationDefault }
                 UIkit.modal("#modal-create").show()
             },
-            async createSubmit() {
+            async createSubmit(data) {
                 let response = null
-                this.isLoading = true;
+                this.isLoading = true
                 let that = this
                 try {
-                    response = await axios.post("category",{ name: this.create.name })
+                    response = await axios.post("category",{ name: data.name })
                     UIkit.notification({message: response.data.message, status: 'success'})
                     UIkit.modal("#modal-create").hide()
                     _.delay(function() {
-                        that.gotoPage(1);
+                        that.gotoPage(1)
                     }, 1000);
                 } catch (error) {
                     if (_.has(error, "response.data.validation")) {
@@ -153,7 +119,7 @@
                             that.formValidation = { ...that.formValidation, [key]:_.values(obj)[0]}
                         })
                     } else {
-                        this.create.error = error.response.data.message;
+                        this.create.error = error.response.data.message
                     }
                 } finally {
                     this.isLoading = false
