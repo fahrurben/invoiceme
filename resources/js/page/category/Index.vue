@@ -31,7 +31,7 @@
                 <td>{{item.isActive ? 'Yes' : 'No'}}</td>
                 <td>
                     <a href="#" @click="showModalUpdate(item.id)" class="uk-icon-link uk-margin-small-right" uk-icon="pencil"></a>
-                    <a href="#" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
+                    <a href="#" @click="showModalDelete(item.id, item.name)" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
                 </td>
             </tr>
             </tbody>
@@ -56,6 +56,20 @@
                     :form-validation="formUpdateValidation"
                     @submit="updateSubmit">
             </form-category>
+        </div>
+    </div>
+    <div id="modal-delete" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <div class="uk-margin">
+                <p>Are you sure to delete <strong>{{deleteItem.name}}</strong> ?</p>
+            </div>
+            <div class="uk-text-right">
+                <div v-if="isLoading != true">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">No</button>
+                    &nbsp;
+                    <button class="uk-button uk-button-primary" type="button" @click="deleteSubmit">Yes</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -88,6 +102,7 @@
                 filter: window.arrFilter,
                 create: { ...createDefault },
                 update: { ...createDefault },
+                deleteItem: { id: null, name: "" },
                 formValidation: {
                     name: ""
                 },
@@ -127,6 +142,10 @@
                 } catch (error) {
                     console.log(error.response.data);
                 }
+            },
+            showModalDelete(id, name) {
+                this.deleteItem = { id: id, name: name }
+                UIkit.modal("#modal-delete").show()
             },
             async createSubmit(data) {
                 let response = null
@@ -196,6 +215,24 @@
                     } else {
                         this.update.error = error.response.data.message
                     }
+                } finally {
+                    this.isLoading = false
+                }
+            },
+            async deleteSubmit() {
+                let response = null
+                this.isLoading = true
+                let that = this
+                try {
+                    response = await axios.get("category/delete/"+this.deleteItem.id)
+                    UIkit.notification({message: response.data.message, status: 'success'})
+                    UIkit.modal("#modal-delete").hide()
+                    _.delay(function() {
+                        that.gotoPage(1)
+                    }, 1000);
+                } catch (error) {
+                    UIkit.modal("#modal-delete").hide()
+                    UIkit.notification({message: error.response.data.message, status: 'danger'})
                 } finally {
                     this.isLoading = false
                 }

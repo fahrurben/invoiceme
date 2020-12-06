@@ -98,4 +98,17 @@ class CategoryController extends Controller
         }
 
     }
+
+    public function delete(
+        int $id,
+        CategoryService $categoryService
+    )
+    {
+        try {
+            $categoryService->delete($id);
+            return response()->json(['message' => 'Delete data success']);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => 'Cannot delete data'], 500);
+        }
+    }
 }

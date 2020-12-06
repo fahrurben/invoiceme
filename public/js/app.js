@@ -30445,6 +30445,10 @@ var validationDefault = {
       filter: window.arrFilter,
       create: _objectSpread({}, createDefault),
       update: _objectSpread({}, createDefault),
+      deleteItem: {
+        id: null,
+        name: ""
+      },
       formValidation: {
         name: ""
       },
@@ -30512,6 +30516,13 @@ var validationDefault = {
           }
         }, _callee, null, [[2, 11]]);
       }))();
+    },
+    showModalDelete: function showModalDelete(id, name) {
+      this.deleteItem = {
+        id: id,
+        name: name
+      };
+      UIkit.modal("#modal-delete").show();
     },
     createSubmit: function createSubmit(data) {
       var _this2 = this;
@@ -30691,6 +30702,58 @@ var validationDefault = {
           }
         }
       }, _callee4, null, [[3, 12, 15, 18]]);
+    }))();
+  }), _defineProperty(_methods, "deleteSubmit", function deleteSubmit() {
+    var _this5 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      var response, that;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              response = null;
+              _this5.isLoading = true;
+              that = _this5;
+              _context5.prev = 3;
+              _context5.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("category/delete/" + _this5.deleteItem.id);
+
+            case 6:
+              response = _context5.sent;
+              UIkit.notification({
+                message: response.data.message,
+                status: 'success'
+              });
+              UIkit.modal("#modal-delete").hide();
+
+              lodash__WEBPACK_IMPORTED_MODULE_2__.delay(function () {
+                that.gotoPage(1);
+              }, 1000);
+
+              _context5.next = 16;
+              break;
+
+            case 12:
+              _context5.prev = 12;
+              _context5.t0 = _context5["catch"](3);
+              UIkit.modal("#modal-delete").hide();
+              UIkit.notification({
+                message: _context5.t0.response.data.message,
+                status: 'danger'
+              });
+
+            case 16:
+              _context5.prev = 16;
+              _this5.isLoading = false;
+              return _context5.finish(16);
+
+            case 19:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[3, 12, 16, 19]]);
     }))();
   }), _methods)
 });
@@ -31014,10 +31077,10 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\"}":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","createSubmit":"options","updateSubmit":"options"} ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"deleteItem\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\",\"deleteSubmit\":\"options\"}":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","deleteItem":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","createSubmit":"options","updateSubmit":"options","deleteSubmit":"options"} ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -31074,28 +31137,50 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-  href: "#",
-  "class": "uk-icon-link uk-margin-small-right",
-  "uk-icon": "trash"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_14 = {
+var _hoisted_13 = {
   id: "modal-create",
   "uk-modal": ""
 };
-var _hoisted_15 = {
+var _hoisted_14 = {
   "class": "uk-modal-dialog uk-modal-body"
 };
-var _hoisted_16 = {
+var _hoisted_15 = {
   id: "modal-update",
   "uk-modal": ""
 };
-var _hoisted_17 = {
+var _hoisted_16 = {
   "class": "uk-modal-dialog uk-modal-body"
 };
+var _hoisted_17 = {
+  id: "modal-delete",
+  "uk-modal": ""
+};
+var _hoisted_18 = {
+  "class": "uk-modal-dialog uk-modal-body"
+};
+var _hoisted_19 = {
+  "class": "uk-margin"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Are you sure to delete ");
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ?");
+
+var _hoisted_22 = {
+  "class": "uk-text-right"
+};
+var _hoisted_23 = {
+  key: 0
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  "class": "uk-button uk-button-default uk-modal-close",
+  type: "button"
+}, "No", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -31168,7 +31253,16 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
       "uk-icon": "pencil"
     }, null, 8
     /* PROPS */
-    , ["onClick"]), _hoisted_13])]);
+    , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+      href: "#",
+      onClick: function onClick($event) {
+        return $options.showModalDelete(item.id, item.name);
+      },
+      "class": "uk-icon-link uk-margin-small-right",
+      "uk-icon": "trash"
+    }, null, 8
+    /* PROPS */
+    , ["onClick"])])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
@@ -31178,21 +31272,29 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
     onGotoPage: $options.gotoPage
   }, null, 8
   /* PROPS */
-  , ["page", "initial-total-page", "arr-page", "onGotoPage"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_category, {
+  , ["page", "initial-total-page", "arr-page", "onGotoPage"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_category, {
     title: "Create",
     "form-default": $data.create,
     "form-validation": $data.formValidation,
     onSubmit: $options.createSubmit
   }, null, 8
   /* PROPS */
-  , ["form-default", "form-validation", "onSubmit"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_category, {
+  , ["form-default", "form-validation", "onSubmit"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_category, {
     title: "Update",
     "form-default": $data.update,
     "form-validation": $data.formUpdateValidation,
     onSubmit: $options.updateSubmit
   }, null, 8
   /* PROPS */
-  , ["form-default", "form-validation", "onSubmit"])])])], 64
+  , ["form-default", "form-validation", "onSubmit"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.deleteItem.name), 1
+  /* TEXT */
+  ), _hoisted_21])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [$data.isLoading != true ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_23, [_hoisted_24, _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    "class": "uk-button uk-button-primary",
+    type: "button",
+    onClick: _cache[7] || (_cache[7] = function () {
+      return $options.deleteSubmit.apply($options, arguments);
+    })
+  }, "Yes")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])], 64
   /* STABLE_FRAGMENT */
   );
 });
@@ -62169,12 +62271,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_createSubmit_options_updateSubmit_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","createSubmit":"options","updateSubmit":"options"} */ "./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\"}");
+/* harmony import */ var _Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_deleteItem_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_createSubmit_options_updateSubmit_options_deleteSubmit_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","deleteItem":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","createSubmit":"options","updateSubmit":"options","deleteSubmit":"options"} */ "./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"deleteItem\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\",\"deleteSubmit\":\"options\"}");
 /* harmony import */ var _Index_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js */ "./resources/js/page/category/Index.vue?vue&type=script&lang=js");
 
 
 
-_Index_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_createSubmit_options_updateSubmit_options___WEBPACK_IMPORTED_MODULE_0__.render
+_Index_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_deleteItem_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_createSubmit_options_updateSubmit_options_deleteSubmit_options___WEBPACK_IMPORTED_MODULE_0__.render
 _Index_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__scopeId = "data-v-18765a53"
 /* hot reload */
 if (false) {}
@@ -62376,12 +62478,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\"}":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","createSubmit":"options","updateSubmit":"options"} ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"deleteItem\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\",\"deleteSubmit\":\"options\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","deleteItem":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","createSubmit":"options","updateSubmit":"options","deleteSubmit":"options"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","createSubmit":"options","updateSubmit":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","deleteItem":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","createSubmit":"options","updateSubmit":"options","deleteSubmit":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -62389,9 +62491,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_createSubmit_options_updateSubmit_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_deleteItem_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_createSubmit_options_updateSubmit_options_deleteSubmit_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_createSubmit_options_updateSubmit_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","createSubmit":"options","updateSubmit":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\"}");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Index_vue_vue_type_template_id_18765a53_scoped_true_bindings_initialPage_props_initialTotalPage_props_pageUrl_props_baseUrl_props_isLoading_data_categories_data_page_data_arrPage_data_filter_data_create_data_update_data_deleteItem_data_formValidation_data_formUpdateValidation_data_gotoPage_options_search_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_createSubmit_options_updateSubmit_options_deleteSubmit_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={"initialPage":"props","initialTotalPage":"props","pageUrl":"props","baseUrl":"props","isLoading":"data","categories":"data","page":"data","arrPage":"data","filter":"data","create":"data","update":"data","deleteItem":"data","formValidation":"data","formUpdateValidation":"data","gotoPage":"options","search":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","createSubmit":"options","updateSubmit":"options","deleteSubmit":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/category/Index.vue?vue&type=template&id=18765a53&scoped=true&bindings={\"initialPage\":\"props\",\"initialTotalPage\":\"props\",\"pageUrl\":\"props\",\"baseUrl\":\"props\",\"isLoading\":\"data\",\"categories\":\"data\",\"page\":\"data\",\"arrPage\":\"data\",\"filter\":\"data\",\"create\":\"data\",\"update\":\"data\",\"deleteItem\":\"data\",\"formValidation\":\"data\",\"formUpdateValidation\":\"data\",\"gotoPage\":\"options\",\"search\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"createSubmit\":\"options\",\"updateSubmit\":\"options\",\"deleteSubmit\":\"options\"}");
 
 
 /***/ }),
