@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('login', 'AuthController@login')->name('login');
 Route::post('login', 'AuthController@authenticate')->name('authenticate');
 
-Route::group( ['middleware' => 'auth' ], function()
+Route::group( ['middleware' => ['auth', 'check.company'] ], function()
 {
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('home');
+
+    Route::get('category', 'CategoryController@index')->name('category.index');
+    Route::post('category', 'CategoryController@create')->name('category.create');
+
 });
 
 

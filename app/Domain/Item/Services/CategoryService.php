@@ -11,7 +11,7 @@ namespace App\Domain\Item\Services;
 use App\Domain\Item\Models\Category;
 use App\Domain\Item\Repositories\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Validation\ValidationException;
+use App\Domain\ValidationException;
 use App\Domain\Item\Models\CategoryDto;
 
 
@@ -38,7 +38,7 @@ class CategoryService implements CategoryServiceInterface
 
     /**
      * @param CategoryDto $categoryDto
-     * @throws \Exception
+     * @throws \Exception|ValidationException
      */
     public function create(CategoryDto $categoryDto): Category
     {
@@ -46,9 +46,8 @@ class CategoryService implements CategoryServiceInterface
         $validator->validate();
 
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $error = $errors->firstOfAll();
-            throw ValidationException::withMessages($error);
+            $errors = $validator->errors()->toArray();
+            throw new ValidationException($errors, json_encode($errors));
         }
 
         $sameCategory = $this->repository->findByName($categoryDto->name);
@@ -78,9 +77,8 @@ class CategoryService implements CategoryServiceInterface
         $validator->validate();
 
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $error = $errors->firstOfAll();
-            throw ValidationException::withMessages($error);
+            $errors = $validator->errors()->toArray();
+            throw new ValidationException($errors, json_decode($errors));
         }
 
         $sameCategory = $this->repository->findByName($categoryDto->name);

@@ -13,7 +13,7 @@ use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\App\Domain\Company\Repositories\CompanyRepository")
  * @ORM\Table(name="company")
  */
 class Company

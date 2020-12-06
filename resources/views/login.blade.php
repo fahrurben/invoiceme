@@ -1,5 +1,7 @@
 @extends('layouts.blank')
 
 @section('content')
-    <login></login>
+    <div id="mainWrapper">
+        <login></login>
+    </div>
 @endsection
