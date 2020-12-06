@@ -69,7 +69,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * @param int $id
      * @param CategoryDto $categoryDto
-     * @throws \Exception
+     * @throws \Exception|ValidationException
      */
     public function update(int $id, CategoryDto $categoryDto): Category
     {

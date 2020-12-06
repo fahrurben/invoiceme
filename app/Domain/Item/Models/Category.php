@@ -11,12 +11,13 @@ namespace App\Domain\Item\Models;
 use App\Domain\MultiTenantEntity;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
+use App\Domain\ArrayExpressible;
 
 /**
  * @ORM\Entity(repositoryClass="\App\Domain\Item\Repositories\CategoryRepository")
  * @ORM\Table(name="item_category")
  */
-class Category
+class Category implements ArrayExpressible
 {
     use MultiTenantEntity;
 

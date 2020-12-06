@@ -30,8 +30,8 @@
                 <td>{{item.name}}</td>
                 <td>{{item.isActive ? 'Yes' : 'No'}}</td>
                 <td>
-                    <a href="" class="uk-icon-link uk-margin-small-right" uk-icon="pencil"></a>
-                    <a href="" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
+                    <a href="#" @click="showModalUpdate(item.id)" class="uk-icon-link uk-margin-small-right" uk-icon="pencil"></a>
+                    <a href="#" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
                 </td>
             </tr>
             </tbody>
@@ -41,9 +41,20 @@
     <div id="modal-create" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <form-category
+                    title="Create"
                     :form-default="create"
                     :form-validation="formValidation"
                     @submit="createSubmit">
+            </form-category>
+        </div>
+    </div>
+    <div id="modal-update" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <form-category
+                    title="Update"
+                    :form-default="update"
+                    :form-validation="formUpdateValidation"
+                    @submit="updateSubmit">
             </form-category>
         </div>
     </div>
@@ -76,7 +87,11 @@
                 arrPage: arrPage,
                 filter: window.arrFilter,
                 create: { ...createDefault },
+                update: { ...createDefault },
                 formValidation: {
+                    name: ""
+                },
+                formUpdateValidation: {
                     name: ""
                 }
             }
@@ -101,6 +116,18 @@
                 this.formValidation = { ...validationDefault }
                 UIkit.modal("#modal-create").show()
             },
+            async showModalUpdate(id) {
+                let that = this
+                let response = null;
+                try {
+                    response = await axios.get("category/detail/" + id)
+                    this.update = { error: "", ...response.data }
+                    this.formValidation = { ...validationDefault }
+                    UIkit.modal("#modal-update").show()
+                } catch (error) {
+                    console.log(error.response.data);
+                }
+            },
             async createSubmit(data) {
                 let response = null
                 this.isLoading = true
@@ -120,6 +147,54 @@
                         })
                     } else {
                         this.create.error = error.response.data.message
+                    }
+                } finally {
+                    this.isLoading = false
+                }
+            },
+            async createSubmit(data) {
+                let response = null
+                this.isLoading = true
+                let that = this
+                try {
+                    response = await axios.post("category",{ name: data.name })
+                    UIkit.notification({message: response.data.message, status: 'success'})
+                    UIkit.modal("#modal-create").hide()
+                    _.delay(function() {
+                        that.gotoPage(1)
+                    }, 1000);
+                } catch (error) {
+                    if (_.has(error, "response.data.validation")) {
+                        let validations = error.response.data.validation
+                        _.forEach(validations, function(obj, key) {
+                            that.formValidation = { ...that.formValidation, [key]:_.values(obj)[0]}
+                        })
+                    } else {
+                        this.create.error = error.response.data.message
+                    }
+                } finally {
+                    this.isLoading = false
+                }
+            },
+            async updateSubmit(data) {
+                let response = null
+                this.isLoading = true
+                let that = this
+                try {
+                    response = await axios.post("category/"+data.id,{ name: data.name, isActive: data.isActive })
+                    UIkit.notification({message: response.data.message, status: 'success'})
+                    UIkit.modal("#modal-update").hide()
+                    _.delay(function() {
+                        that.gotoPage(1)
+                    }, 1000);
+                } catch (error) {
+                    if (_.has(error, "response.data.validation")) {
+                        let validations = error.response.data.validation
+                        _.forEach(validations, function(obj, key) {
+                            that.formUpdateValidation = { ...that.formUpdateValidation, [key]:_.values(obj)[0]}
+                        })
+                    } else {
+                        this.update.error = error.response.data.message
                     }
                 } finally {
                     this.isLoading = false

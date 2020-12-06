@@ -23,7 +23,9 @@ Route::group( ['middleware' => ['auth', 'check.company'] ], function()
     })->name('home');
 
     Route::get('category', 'CategoryController@index')->name('category.index');
+    Route::get('category/detail/{id}', 'CategoryController@detail')->name('category.detail');
     Route::post('category', 'CategoryController@create')->name('category.create');
+    Route::post('category/{id}', 'CategoryController@update')->name('category.update');
 
 });
 

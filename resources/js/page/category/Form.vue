@@ -3,10 +3,10 @@
         <form class="uk-form-horizontal">
             <fieldset class="uk-fieldset">
 
-                <legend class="uk-legend">Create</legend>
+                <legend class="uk-legend">{{title}}</legend>
 
-                <div v-if="form.error != ''"  class="uk-alert-danger" uk-alert>
-                    <p>{{form.error}}</p>
+                <div v-if="formDefault.error != ''"  class="uk-alert-danger" uk-alert>
+                    <p>{{formDefault.error}}</p>
                 </div>
 
                 <div v-if="isLoading != true">
@@ -14,8 +14,15 @@
                     <div class="uk-margin">
                         <label class="uk-form-label" for="name">Name <span class="uk-text-danger">*</span></label>
                         <div class="uk-form-controls">
-                            <input :class="{ 'uk-input': true, 'uk-form-danger' : formValidation.name != ''}" id="name" type="text" v-model="form.name">
+                            <input :class="{ 'uk-input': true, 'uk-form-danger' : formValidation.name != ''}" id="name" type="text" v-model="formDefault.name">
                             <div v-if="formValidation.name != ''" class="uk-text-danger">{{formValidation.name}}</div>
+                        </div>
+                    </div>
+
+                    <div v-if="title == 'Update'" class="uk-margin">
+                        <label class="uk-form-label" for="isActive">Is Active</label>
+                        <div class="uk-form-controls">
+                            <input id="isActive" class="uk-checkbox" type="checkbox" v-model="formDefault.isActive">
                         </div>
                     </div>
 
@@ -41,18 +48,18 @@
     export default {
         name: "Form.vue",
         props: [
+            'title',
             'formDefault',
             'formValidation'
         ],
         data() {
             return {
                 isLoading: false,
-                form: this.formDefault,
             }
         },
         methods: {
             save() {
-                this.$emit('submit', this.form)
+                this.$emit('submit', this.formDefault)
             }
         }
     }
