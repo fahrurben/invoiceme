@@ -8,11 +8,15 @@
 
 namespace App\Domain\Item\Models;
 
+use App\Domain\ArrayExpressible;
+use App\Domain\ArrayExpressibleEntity;
 use Rakit\Validation\Validation;
 use Rakit\Validation\Validator;
 
-class ItemDto
+class ItemDto implements ArrayExpressible
 {
+    use ArrayExpressibleEntity;
+
     public $companyId;
 
     public $name;
@@ -27,6 +31,14 @@ class ItemDto
     {
     }
 
+    public function fromArray($data)
+    {
+        $this->name = $data['name'] ?? '';
+        $this->type = $data['type'] ?? null;
+        $this->categoryId = $data['categoryId'] ?? null;
+        $this->isActive  = $data['isActive'] ?? null;
+    }
+
     public function getValidator(): Validation
     {
         $validator = new Validator;
@@ -38,7 +50,7 @@ class ItemDto
             'categoryId' => 'required',
         ];
 
-        return $validator->make((array)$this, $rules);
+        return $validator->make($this->toArray(), $rules);
     }
 
     public function getUpdateValidator(): Validation
@@ -52,6 +64,6 @@ class ItemDto
             'categoryId' => 'required',
         ];
 
-        return $validator->make((array)$this, $rules);
+        return $validator->make($this->toArray(), $rules);
     }
 }

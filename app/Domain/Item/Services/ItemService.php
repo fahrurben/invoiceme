@@ -13,8 +13,8 @@ use App\Domain\Item\Models\Item;
 use App\Domain\Item\Models\ItemDto;
 use App\Domain\Item\Repositories\CategoryRepository;
 use App\Domain\Item\Repositories\ItemRepository;
+use App\Domain\ValidationException;
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Validation\ValidationException;
 
 class ItemService implements ItemServiceInterface
 {
@@ -51,7 +51,7 @@ class ItemService implements ItemServiceInterface
 
     /**
      * @param ItemDto $itemDto
-     * @throws \Exception
+     * @throws \Exception|\App\Domain\ValidationException
      */
     public function create(ItemDto $itemDto): Item
     {
@@ -59,9 +59,8 @@ class ItemService implements ItemServiceInterface
         $validator->validate();
 
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $error = $errors->firstOfAll();
-            throw ValidationException::withMessages($error);
+            $errors = $validator->errors()->toArray();
+            throw new ValidationException($errors, json_encode($errors));
         }
 
         $sameNameItem = $this->repository->findByName($itemDto->name);
@@ -102,9 +101,8 @@ class ItemService implements ItemServiceInterface
         $validator->validate();
 
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $error = $errors->firstOfAll();
-            throw ValidationException::withMessages($error);
+            $errors = $validator->errors()->toArray();
+            throw new ValidationException($errors, json_encode($errors));
         }
 
         $sameNameItem = $this->repository->findByName($itemDto->name);

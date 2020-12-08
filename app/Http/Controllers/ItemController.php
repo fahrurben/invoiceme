@@ -2,56 +2,74 @@
 /**
  * Created by PhpStorm.
  * User: fahrur
- * Date: 02/12/20
- * Time: 4:10
+ * Date: 08/12/20
+ * Time: 3:41
  */
 
 namespace App\Http\Controllers;
 
 
-use App\Domain\Item\Models\Category;
-use App\Domain\Item\Models\CategoryDto;
+use App\Domain\Item\Models\Item;
+use App\Domain\Item\Models\ItemDto;
 use App\Domain\Item\Repositories\CategoryRepository;
-use App\Domain\Item\Services\CategoryService;
+use App\Domain\Item\Repositories\ItemRepository;
+use App\Domain\Item\Services\ItemService;
 use App\Domain\ValidationException;
+use App\Helper\CommonHelper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CategoryController extends Controller
+class ItemController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param ItemRepository $repository
+     * @param CategoryRepository $categoryRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(
         Request $request,
-        CategoryRepository $repository
+        ItemRepository $repository,
+        CategoryRepository $categoryRepository
     )
     {
-        $searchDto = new CategoryDto();
+        $searchDto = new ItemDto();
         $searchDto->name = $request->get('name');
+        $searchDto->categoryId = !empty($request->get('category')) ? $request->get('category') : null;
+        $searchDto->type = !empty($request->get('type')) ? $request->get('type') : null;
         $searchDto->isActive = !empty($request->get('isActive')) ? $request->get('isActive') : null;
 
         $page = $request->get('page') ?? 1;
-        $searchResult = $repository->search(Category::class, $searchDto, $page);
-        $arrCategory = $searchResult->getArrayData();
+        $searchResult = $repository->search(Item::class, $searchDto, $page);
+        $categoryList = $categoryRepository->getAllActive($request->get('companyId'));
+        $arrCategory = CommonHelper::getArrayFromCollection($categoryList);
 
-        return view('pages.category.index',[
+        $arrItem = $searchResult->getArrayData();
+
+        return view('pages.item.index',[
+            'arrItem' => $arrItem,
             'arrCategory' => $arrCategory,
             'page' => $page,
             'totalPage' => $searchResult->total_page,
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param ItemService $itemService
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(
         Request $request,
-        CategoryService $categoryService
+        ItemService $itemService
     )
     {
         try {
             $data = $request->json()->all();
-            $categoryDto = new CategoryDto();
-            $categoryDto->fromArray($data);
-            $categoryDto->companyId = $request->get('companyId');
+            $itemDto = new ItemDto();
+            $itemDto->fromArray($data);
+            $itemDto->companyId = $request->get('companyId');
 
-
-            $categoryService->create($categoryDto);
+            $itemService->create($itemDto);
 
             return response()->json(['message' => 'Create data success']);
         } catch (ValidationException $exception) {
@@ -62,34 +80,36 @@ class CategoryController extends Controller
 
     }
 
+
     public function detail(
         int $id,
-        CategoryRepository $repository
+        ItemRepository $repository
     )
     {
         try {
-            $category = $repository->find($id);
+            $item = $repository->find($id);
 
-            return response()->json($category->toArray());
+            return response()->json($item->toArray());
         } catch (\Exception $exception) {
             return response()->json(['message' => $exception->getMessage()], 500);
         }
     }
 
+
     public function update(
         int $id,
         Request $request,
-        CategoryService $categoryService
+        ItemService $itemService
     )
     {
         try {
             $data = $request->json()->all();
-            $categoryDto = new CategoryDto();
-            $categoryDto->fromArray($data);
-            $categoryDto->companyId = $request->get('companyId');
+            $itemDto = new ItemDto();
+            $itemDto->fromArray($data);
+            $itemDto->companyId = $request->get('companyId');
 
 
-            $categoryService->update($id, $categoryDto);
+            $itemService->update($id, $itemDto);
 
             return response()->json(['message' => 'Update data success']);
         } catch (ValidationException $exception) {
@@ -102,11 +122,11 @@ class CategoryController extends Controller
 
     public function delete(
         int $id,
-        CategoryService $categoryService
+        ItemService $itemService
     )
     {
         try {
-            $categoryService->delete($id);
+            $itemService->delete($id);
             return response()->json(['message' => 'Delete data success']);
         } catch (\Exception $exception) {
             return response()->json(['message' => 'Cannot delete data'], 500);

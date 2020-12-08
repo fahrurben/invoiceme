@@ -8,6 +8,8 @@
 
 namespace App\Domain\Item\Models;
 
+use App\Domain\ArrayExpressible;
+use App\Domain\ArrayExpressibleEntity;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
 
@@ -15,8 +17,10 @@ use /** @noinspection PhpUnusedAliasInspection */
  * @ORM\Entity(repositoryClass="\App\Domain\Item\Repositories\ItemRepository")
  * @ORM\Table(name="item")
  */
-class Item
+class Item implements ArrayExpressible
 {
+    use ArrayExpressibleEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -52,6 +56,14 @@ class Item
 
     public function __construct()
     {
+    }
+
+    public function toArray()
+    {
+        $data = get_object_vars($this);
+        $data['category'] = $this->category->toArray();
+
+        return $data;
     }
 
     /**

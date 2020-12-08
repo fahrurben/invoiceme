@@ -28,6 +28,12 @@ Route::group( ['middleware' => ['auth', 'check.company'] ], function()
     Route::post('category/{id}', 'CategoryController@update')->name('category.update');
     Route::get('category/delete/{id}', 'CategoryController@delete')->name('category.delete');
 
+    Route::get('item', 'ItemController@index')->name('item.index');
+    Route::get('item/detail/{id}', 'ItemController@detail')->name('item.detail');
+    Route::post('item', 'ItemController@create')->name('item.create');
+    Route::post('item/{id}', 'ItemController@update')->name('item.update');
+    Route::get('item/delete/{id}', 'ItemController@delete')->name('item.delete');
+
 
 });
 

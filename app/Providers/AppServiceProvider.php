@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Domain\Auth\Models\User;
 use App\Domain\Company\Models\Company;
 use App\Domain\Item\Models\Category;
+use App\Domain\Item\Models\Item;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,6 +36,13 @@ class AppServiceProvider extends ServiceProvider
         ) {
             $entityManager = $app->make('Doctrine\ORM\EntityManagerInterface');
             return $entityManager->getRepository(Company::class);
+        });
+
+        $this->app->singleton('App\Domain\Item\Repositories\ItemRepository', function (
+            $app
+        ) {
+            $entityManager = $app->make('Doctrine\ORM\EntityManagerInterface');
+            return $entityManager->getRepository(Item::class);
         });
     }
 

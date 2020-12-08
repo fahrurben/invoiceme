@@ -78,7 +78,7 @@ class CategoryService implements CategoryServiceInterface
 
         if ($validator->fails()) {
             $errors = $validator->errors()->toArray();
-            throw new ValidationException($errors, json_decode($errors));
+            throw new ValidationException($errors, json_encode($errors));
         }
 
         $sameCategory = $this->repository->findByName($categoryDto->name);

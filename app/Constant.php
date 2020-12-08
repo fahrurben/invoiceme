@@ -15,4 +15,9 @@ class Constant
     const SORT_DESCENDING = 'DESC';
 
     const DEFAULT_PAGING_SIZE = 5;
+
+    const ITEM_TYPES = [
+        1 => 'Product',
+        2 => 'Service'
+    ];
 }

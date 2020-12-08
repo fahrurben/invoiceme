@@ -9,11 +9,14 @@
 namespace App\Domain\Item\Models;
 
 use App\Domain\ArrayExpressible;
+use App\Domain\ArrayExpressibleEntity;
 use Rakit\Validation\Validation;
 use Rakit\Validation\Validator;
 
 class CategoryDto implements ArrayExpressible
 {
+    use ArrayExpressibleEntity;
+
     public $companyId;
 
     public $name;
@@ -55,7 +58,4 @@ class CategoryDto implements ArrayExpressible
         return $validator->make((array)$this, $rules);
     }
 
-    public function toArray() {
-        return get_object_vars($this);
-    }
 }

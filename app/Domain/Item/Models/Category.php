@@ -8,6 +8,7 @@
 
 namespace App\Domain\Item\Models;
 
+use App\Domain\ArrayExpressibleEntity;
 use App\Domain\MultiTenantEntity;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
@@ -19,7 +20,7 @@ use App\Domain\ArrayExpressible;
  */
 class Category implements ArrayExpressible
 {
-    use MultiTenantEntity;
+    use MultiTenantEntity, ArrayExpressibleEntity;
 
     /**
      * @ORM\Id
@@ -40,11 +41,6 @@ class Category implements ArrayExpressible
 
     public function __construct()
     {
-    }
-
-    public function toArray()
-    {
-        return get_object_vars($this);
     }
 
     /**
