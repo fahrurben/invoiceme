@@ -14,8 +14,8 @@ use App\Domain\Invoice\Models\Line;
 use App\Domain\Invoice\Repositories\InvoiceRepository;
 use App\Domain\Invoice\Repositories\LineRepository;
 use App\Domain\Item\Repositories\ItemRepository;
+use App\Domain\ValidationException;
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Validation\ValidationException;
 
 class InvoiceService implements InvoiceServiceInterface
 {
@@ -68,9 +68,8 @@ class InvoiceService implements InvoiceServiceInterface
         $validator->validate();
 
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $error = $errors->firstOfAll();
-            throw ValidationException::withMessages($error);
+            $errors = $validator->errors()->toArray();
+            throw new ValidationException($errors, json_encode($errors));
         }
 
         $issueDate = \DateTime::createFromFormat('Y-m-d', $invoiceDto->issueDate);
@@ -119,9 +118,8 @@ class InvoiceService implements InvoiceServiceInterface
         $validator->validate();
 
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $error = $errors->firstOfAll();
-            throw ValidationException::withMessages($error);
+            $errors = $validator->errors()->toArray();
+            throw new ValidationException($errors, json_encode($errors));
         }
 
         $issueDate = \DateTime::createFromFormat('Y-m-d', $invoiceDto->issueDate);

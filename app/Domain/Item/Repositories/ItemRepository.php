@@ -31,6 +31,21 @@ class ItemRepository extends BaseRepository
         return $query->getOneOrNullResult();
     }
 
+    public function getAllActive($companyId)
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        $qb->select('o')
+            ->from(Item::class, 'o')
+            ->where('o.isActive = true')
+            ->andWhere('o.companyId = ?1')
+            ->setParameter(1, $companyId);
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
+
     /**
      * @param ItemDto $dto
      * @param QueryBuilder $qb

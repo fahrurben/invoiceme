@@ -8,10 +8,11 @@
 
 namespace App\Domain\Invoice\Models;
 
+use App\Domain\ArrayExpressible;
 use Rakit\Validation\Validation;
 use Rakit\Validation\Validator;
 
-class InvoiceDto
+class InvoiceDto implements ArrayExpressible
 {
     public $companyId;
 
@@ -37,6 +38,37 @@ class InvoiceDto
         $this->lines = [];
     }
 
+    public function toArray()
+    {
+        $data = get_object_vars($this);
+        $data['lines'] = [];
+        foreach ($this->lines as $line) {
+            $data['lines'][] = $line->toArray();
+        }
+
+        return $data;
+    }
+
+    public function fromArray($data)
+    {
+        $this->no = $data['no'] ?? '';
+        $this->issueDate  = $data['issueDate'] ?? null;
+        $this->dueDate  = $data['dueDate'] ?? null;
+        $this->customerName  = $data['customerName'] ?? '';
+        $this->customerEmail  = $data['customerEmail'] ?? '';
+        $this->tax  = $data['tax'] ?? 0;
+
+        if (!empty($data['lines'])) {
+            foreach ($data['lines'] as $line) {
+                $lineDto = new LineDto();
+                $lineDto->fromArray($line);
+
+                $this->lines[] = $lineDto;
+            }
+        }
+
+    }
+
     public function getValidator(): Validation
     {
         $validator = new Validator;
@@ -44,13 +76,13 @@ class InvoiceDto
         $rules = [
             'companyId' => 'required',
             'no' => 'required',
-            'issueDate' => 'date',
-            'dueDate' => 'date',
+            'issueDate' => 'required|date',
+            'dueDate' => 'required|date',
             'customerName' => 'required',
-            'customerEmail' => 'required',
+            'customerEmail' => 'required|email',
             'tax' => 'required|numeric',
         ];
 
-        return $validator->make((array)$this, $rules);
+        return $validator->make($this->toArray(), $rules);
     }
 }

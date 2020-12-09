@@ -8,11 +8,15 @@
 
 namespace App\Domain\Invoice\Models;
 
+use App\Domain\ArrayExpressible;
+use App\Domain\ArrayExpressibleEntity;
 use Rakit\Validation\Validation;
 use Rakit\Validation\Validator;
 
-class LineDto
+class LineDto implements ArrayExpressible
 {
+    use ArrayExpressibleEntity;
+
     public $id;
 
     public $invoiceId;
@@ -29,6 +33,15 @@ class LineDto
     {
     }
 
+    public function fromArray($data)
+    {
+        $this->id = $data['id'] ?? null;
+        $this->invoiceId  = $data['invoiceId'] ?? null;
+        $this->itemId  = $data['itemId'] ?? null;
+        $this->qty  = $data['qty'] ?? 0;
+        $this->price  = $data['price'] ?? '';
+        $this->amount  = $data['amount'] ?? 0;
+    }
     public function getValidator(): Validation
     {
         $validator = new Validator;
@@ -40,6 +53,6 @@ class LineDto
             'amount' => 'required|numeric',
         ];
 
-        return $validator->make((array)$this, $rules);
+        return $validator->make($this->toArray(), $rules);
     }
 }

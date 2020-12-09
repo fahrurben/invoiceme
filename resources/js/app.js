@@ -10,6 +10,9 @@ import FormCategory from './page/category/Form'
 import ItemIndex from './page/item/Index'
 import FormItem from './page/item/Form'
 
+import InvoiceCreate from './page/invoice/Create'
+import FormInvoice from './page/invoice/Form'
+
 window.UIkit = require("uikit")
 window.Icons = require("uikit/dist/js/uikit-icons")
 
@@ -33,6 +36,9 @@ app.component('form-category', FormCategory)
 
 app.component('item-index', ItemIndex)
 app.component('form-item', FormItem)
+
+app.component('invoice-create', InvoiceCreate)
+app.component('form-invoice', FormInvoice)
 
 document.addEventListener('DOMContentLoaded', function(){
     app.mount('#mainWrapper')

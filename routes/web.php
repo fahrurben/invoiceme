@@ -34,7 +34,8 @@ Route::group( ['middleware' => ['auth', 'check.company'] ], function()
     Route::post('item/{id}', 'ItemController@update')->name('item.update');
     Route::get('item/delete/{id}', 'ItemController@delete')->name('item.delete');
 
-
+    Route::get('invoice/create', 'InvoiceController@create')->name('invoice.create');
+    Route::post('invoice/store', 'InvoiceController@store')->name('invoice.store');
 });
 
 
