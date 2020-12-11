@@ -174,18 +174,30 @@
 
         <div class="uk-form-horizontal uk-grid-small" uk-grid>
             <div class="uk-width-1-2">
+            </div>
+            <div class="uk-width-1-2">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="tax">Tax <span class="uk-text-danger">*</span></label>
                     <div class="uk-form-controls">
                         <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="tax"  id="tax" type="number">
                     </div>
                 </div>
-            </div>
-            <div class="uk-width-1-2">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="subTotal">SubTotal</label>
+                    <div class="uk-form-controls">
+                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="subTotal" id="subTotal" type="number" readonly>
+                    </div>
+                </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="taxTotal">Tax Total</label>
                     <div class="uk-form-controls">
                         <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="taxTotal" id="taxTotal" type="number" readonly>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="invoiceTotal">Total</label>
+                    <div class="uk-form-controls">
+                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="invoiceTotal" id="invoiceTotal" type="number" readonly>
                     </div>
                 </div>
             </div>
@@ -266,9 +278,14 @@
             lineUpdateAmount: function () {
                 return this.lineUpdate.qty * this.lineUpdate.price
             },
+            subTotal: function () {
+                return this.lines.reduce((subTotal, line) => { return (line.qty * line.price) + subTotal }, 0)
+            },
             taxTotal: function () {
-                let total = this.lines.reduce((subTotal, line) => { return (line.qty * line.price) + subTotal }, 0)
-                return this.tax * total / 100;
+                return this.tax * this.subTotal / 100
+            },
+            invoiceTotal: function () {
+                return this.subTotal - this.taxTotal
             }
         },
         methods: {
