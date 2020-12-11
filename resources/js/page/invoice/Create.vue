@@ -115,7 +115,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="amount">Amount</label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidationUpdate.amount != ''}" id="amount" type="number" v-model="lineUpdateAmount">
+                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidationUpdate.amount != ''}" id="amount" v-model="lineUpdateAmount">
                                     <div v-if="lineValidationUpdate.amount != ''" class="uk-text-danger">{{lineValidationUpdate.amount}}</div>
                                 </div>
                             </div>
@@ -161,9 +161,9 @@
             <tbody>
             <tr v-for="(line, index) in lines" v-bind:value="index">
                 <td>{{line.itemName}}</td>
-                <td align="right">{{line.qty}}</td>
-                <td align="right">{{line.price}}</td>
-                <td align="right">{{line.amount}}</td>
+                <td align="right">{{$filters.formatDecimal(line.qty)}}</td>
+                <td align="right">{{$filters.formatDecimal(line.price)}}</td>
+                <td align="right">{{$filters.formatDecimal(line.amount)}}</td>
                 <td align="center">
                     <a href="#" @click="showModalUpdate(index)" class="uk-icon-link uk-margin-small-right" uk-icon="pencil"></a>
                     <a href="#" @click="showModalDelete(index)" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
@@ -185,19 +185,19 @@
                 <div class="uk-margin">
                     <label class="uk-form-label" for="subTotal">SubTotal</label>
                     <div class="uk-form-controls">
-                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="subTotal" id="subTotal" type="number" readonly>
+                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="subTotalFormatted" id="subTotal" readonly>
                     </div>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="taxTotal">Tax Total</label>
                     <div class="uk-form-controls">
-                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="taxTotal" id="taxTotal" type="number" readonly>
+                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="taxTotalFormatted" id="taxTotal" readonly>
                     </div>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="invoiceTotal">Total</label>
                     <div class="uk-form-controls">
-                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="invoiceTotal" id="invoiceTotal" type="number" readonly>
+                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="invoiceTotalFormatted" id="invoiceTotal" readonly>
                     </div>
                 </div>
             </div>
@@ -269,25 +269,33 @@
                 lineUpdate: { ...lineDefault },
                 lineValidationUpdate: { ...validationLineDefault },
                 deletingIndex: null,
-                qty: 0,
             }
         },
         computed: {
             lineCreateAmount: function () {
-                return this.lineCreate.qty * this.lineCreate.price
+                return this.$filters.formatDecimal(this.lineCreate.qty * this.lineCreate.price)
             },
             lineUpdateAmount: function () {
-                return this.lineUpdate.qty * this.lineUpdate.price
+                return this.$filters.formatDecimal(this.lineUpdate.qty * this.lineUpdate.price)
             },
             subTotal: function () {
                 return this.lines.reduce((subTotal, line) => { return (line.qty * line.price) + subTotal }, 0)
             },
+            subTotalFormatted: function () {
+                return this.$filters.formatDecimal(this.subTotal)
+            },
             taxTotal: function () {
                 return this.tax * this.subTotal / 100
             },
+            taxTotalFormatted: function () {
+                return this.$filters.formatDecimal(this.taxTotal)
+            },
             invoiceTotal: function () {
                 return this.subTotal - this.taxTotal
-            }
+            },
+            invoiceTotalFormatted: function () {
+                return this.$filters.formatDecimal(this.invoiceTotal)
+            },
         },
         methods: {
             getItemName(itemId) {
@@ -305,7 +313,6 @@
                 let lineData = this.lines[index];
                 this.updatingIndex = index;
                 this.lineUpdate = { ...lineData }
-                console.log(this.lineUpdate)
                 this.lineValidationUpdate = { ...validationLineDefault }
                 UIkit.modal("#modal-update").show()
             },
@@ -363,6 +370,7 @@
                 try {
                     response = await axios.post("store",{
                         ...this.form,
+                        tax: this.tax,
                         lines: [ ...this.lines ]
                     })
                     UIkit.notification({message: response.data.message, status: 'success'})

@@ -25,6 +25,13 @@ const app = Vue.createApp({})
 app.config.globalProperties.$filters = {
     itemTypeName(value) {
         return value == 1 ? 'Product' : 'Service'
+    },
+    formatDecimal(value) {
+        value = value.toString()
+        value = value.replaceAll(',', '')
+        value = value === "" ? "0" : value
+        value = parseFloat(value)
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 }
 
