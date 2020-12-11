@@ -38,7 +38,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="qty">Qty <span class="uk-text-danger">*</span></label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidation.qty != ''}" id="qty" type="number" v-model="lineCreate.qty">
+                                    <numeric-input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidation.qty != ''}" id="qty" v-model="lineCreate.qty" />
                                     <div v-if="lineValidation.qty != ''" class="uk-text-danger">{{lineValidation.qty}}</div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="price">Price <span class="uk-text-danger">*</span></label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidation.price != ''}" id="price" type="number" v-model="lineCreate.price">
+                                    <numeric-input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidation.price != ''}" id="price" v-model="lineCreate.price" />
                                     <div v-if="lineValidation.price != ''" class="uk-text-danger">{{lineValidation.price}}</div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="amount">Amount</label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidation.amount != ''}" id="amount" type="number" v-model="lineCreateAmount">
+                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidation.amount != ''}" id="amount" v-model="lineCreateAmount">
                                     <div v-if="lineValidation.amount != ''" class="uk-text-danger">{{lineValidation.amount}}</div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="qty">Qty <span class="uk-text-danger">*</span></label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidationUpdate.qty != ''}" id="qty" type="number" v-model="lineUpdate.qty">
+                                    <numeric-input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidationUpdate.qty != ''}" id="qty" v-model="lineUpdate.qty" />
                                     <div v-if="lineValidationUpdate.qty != ''" class="uk-text-danger">{{lineValidationUpdate.qty}}</div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="price">Price <span class="uk-text-danger">*</span></label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidationUpdate.price != ''}" id="price" type="number" v-model="lineUpdate.price">
+                                    <numeric-input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidationUpdate.price != ''}" id="price" v-model="lineUpdate.price" />
                                     <div v-if="lineValidationUpdate.price != ''" class="uk-text-danger">{{lineValidationUpdate.price}}</div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                 <div class="uk-margin">
                     <label class="uk-form-label" for="tax">Tax <span class="uk-text-danger">*</span></label>
                     <div class="uk-form-controls">
-                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="tax"  id="tax" type="number">
+                        <numeric-input :styles="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="tax" id="tax" />
                     </div>
                 </div>
                 <div class="uk-margin">
@@ -268,7 +268,8 @@
                 updatingIndex: null,
                 lineUpdate: { ...lineDefault },
                 lineValidationUpdate: { ...validationLineDefault },
-                deletingIndex: null
+                deletingIndex: null,
+                qty: 0,
             }
         },
         computed: {
@@ -304,6 +305,7 @@
                 let lineData = this.lines[index];
                 this.updatingIndex = index;
                 this.lineUpdate = { ...lineData }
+                console.log(this.lineUpdate)
                 this.lineValidationUpdate = { ...validationLineDefault }
                 UIkit.modal("#modal-update").show()
             },

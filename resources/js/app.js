@@ -1,6 +1,7 @@
 import * as Vue from 'vue'
 
 import Pagination from './page/common/Pagination';
+import NumericInput from './components/numeric-input';
 
 import ButtonCounter from './page/ButtonCounter'
 import Login from './page/Login'
@@ -28,6 +29,7 @@ app.config.globalProperties.$filters = {
 }
 
 app.component('Pagination', Pagination)
+app.component('numeric-input', NumericInput)
 
 app.component('button-counter', ButtonCounter)
 app.component('login', Login)
