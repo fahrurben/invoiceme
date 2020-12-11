@@ -9,8 +9,8 @@
                 :form-validation="formValidation"
         >
         </form-invoice>
-        <div>
-            <button class="uk-button uk-button-primary" type="button" @click="showModalCreate">Add Line</button>
+        <div class="uk-clearfix uk-margin-small-top">
+            <button class="uk-button uk-button-primary uk-float-right" type="button" @click="showModalCreate">Add Line</button>
         </div>
         <div id="modal-create" uk-modal>
             <div class="uk-modal-dialog uk-modal-body">
@@ -54,7 +54,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="amount">Amount</label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidation.amount != ''}" id="amount" v-model="lineCreateAmount">
+                                    <input class="uk-input uk-form-small uk-text-right calculated-input" id="amount" v-model="lineCreateAmount" readonly="true">
                                     <div v-if="lineValidation.amount != ''" class="uk-text-danger">{{lineValidation.amount}}</div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="amount">Amount</label>
                                 <div class="uk-form-controls">
-                                    <input :class="{ 'uk-input': true, 'uk-text-right': true, 'uk-form-small': true, 'uk-form-danger' : lineValidationUpdate.amount != ''}" id="amount" v-model="lineUpdateAmount">
+                                    <input class="uk-input uk-form-small uk-text-right calculated-input" id="amount" v-model="lineUpdateAmount" readonly="true">
                                     <div v-if="lineValidationUpdate.amount != ''" class="uk-text-danger">{{lineValidationUpdate.amount}}</div>
                                 </div>
                             </div>
@@ -148,29 +148,31 @@
             </div>
         </div>
 
-        <table class="uk-table uk-table-striped uk-table-small uk-table-divider">
-            <thead>
-            <tr>
-                <th>Item</th>
-                <th class="uk-text-center">Qty</th>
-                <th class="uk-text-center">Price</th>
-                <th class="uk-text-center">Amount</th>
-                <th class="uk-text-center">Operation</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(line, index) in lines" v-bind:value="index">
-                <td>{{line.itemName}}</td>
-                <td align="right">{{$filters.formatDecimal(line.qty)}}</td>
-                <td align="right">{{$filters.formatDecimal(line.price)}}</td>
-                <td align="right">{{$filters.formatDecimal(line.amount)}}</td>
-                <td align="center">
-                    <a href="#" @click="showModalUpdate(index)" class="uk-icon-link uk-margin-small-right" uk-icon="pencil"></a>
-                    <a href="#" @click="showModalDelete(index)" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div id="lines-section">
+            <table class="uk-table uk-table-striped uk-table-small uk-table-divider">
+                <thead>
+                <tr>
+                    <th>Item</th>
+                    <th class="uk-text-center">Qty</th>
+                    <th class="uk-text-center">Price</th>
+                    <th class="uk-text-center">Amount</th>
+                    <th class="uk-text-center">Operation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(line, index) in lines" v-bind:value="index">
+                    <td>{{line.itemName}}</td>
+                    <td align="right">{{$filters.formatDecimal(line.qty)}}</td>
+                    <td align="right">{{$filters.formatDecimal(line.price)}}</td>
+                    <td align="right">{{$filters.formatDecimal(line.amount)}}</td>
+                    <td align="center">
+                        <a href="#" @click="showModalUpdate(index)" class="uk-icon-link uk-margin-small-right" uk-icon="pencil"></a>
+                        <a href="#" @click="showModalDelete(index)" class="uk-icon-link uk-margin-small-right" uk-icon="trash"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div class="uk-form-horizontal uk-grid-small" uk-grid>
             <div class="uk-width-1-2">
@@ -185,25 +187,25 @@
                 <div class="uk-margin">
                     <label class="uk-form-label" for="subTotal">SubTotal</label>
                     <div class="uk-form-controls">
-                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="subTotalFormatted" id="subTotal" readonly>
+                        <input class="uk-input uk-form-small uk-text-right calculated-input" v-model="subTotalFormatted" id="subTotal" readonly>
                     </div>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="taxTotal">Tax Total</label>
                     <div class="uk-form-controls">
-                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="taxTotalFormatted" id="taxTotal" readonly>
+                        <input class="uk-input uk-form-small uk-text-right calculated-input" v-model="taxTotalFormatted" id="taxTotal" readonly>
                     </div>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="invoiceTotal">Total</label>
                     <div class="uk-form-controls">
-                        <input :class="{ 'uk-input': true, 'uk-form-small': true, 'uk-text-right': true}" v-model="invoiceTotalFormatted" id="invoiceTotal" readonly>
+                        <input class="uk-input uk-form-small uk-text-right calculated-input" v-model="invoiceTotalFormatted" id="invoiceTotal" readonly>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="uk-text-right uk-margin-medium-top">
+        <div class="uk-text-right uk-margin-top">
             <div>
                 <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
                 &nbsp;

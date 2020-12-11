@@ -12339,3 +12339,15 @@ h3 {
 .main-wrapper {
   padding: 15px;
 }
+
+.calculated-input {
+  background-color: #F0F0F0;
+}
+
+#lines-section table {
+  margin: 10px 0px 50px 0px;
+}
+#lines-section table th {
+  border-top: 1px #e5e5e5 solid;
+  border-bottom: 1px #e5e5e5 solid;
+}
