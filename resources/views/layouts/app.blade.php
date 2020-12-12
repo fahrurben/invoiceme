@@ -26,11 +26,14 @@
                 Invoice Me
             </div>
             <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                <li><a href="#">Active</a></li>
+                <li class="<?php echo (url()->current() == route('home') ? "uk-active" : "")?>"><a href="{{ route('home') }}" >Invoice</a></li>
+                <li class="<?php echo (url()->current() == route('item.index') ? "uk-active" : "")?>"><a href="{{ route('item.index') }}">Item</a></li>
+                <li class="<?php echo (url()->current() == route('category.index') ? "uk-active" : "")?>"><a href="{{ route('category.index') }}">Item Category</a></li>
+                <!--
                 <li class="uk-parent">
                     <a href="#">Parent</a>
                     <ul class="uk-nav-sub">
-                        <li><a href="#">Sub item</a></li>
+                        <li><a href="{{ route('home') }}">Invoice</a></li>
                         <li>
                             <a href="#">Sub item</a>
                             <ul>
@@ -41,6 +44,7 @@
                     </ul>
                 </li>
                 <li><a href="#">Item</a></li>
+                -->
             </ul>
         </div>
         <div id="main" class="uk-flex-1">
@@ -48,7 +52,7 @@
                 <div class="uk-navbar-right">
 
                     <ul class="uk-navbar-nav">
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
                     </ul>
 
                 </div>

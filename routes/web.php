@@ -18,6 +18,8 @@ Route::post('login', 'AuthController@authenticate')->name('authenticate');
 
 Route::group( ['middleware' => ['auth', 'check.company'] ], function()
 {
+    Route::get('logout', 'AuthController@logout')->name('logout');
+
     Route::get('/', 'InvoiceController@index')->name('home');
 
     Route::get('category', 'CategoryController@index')->name('category.index');
