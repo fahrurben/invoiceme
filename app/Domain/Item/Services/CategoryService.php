@@ -50,7 +50,7 @@ class CategoryService implements CategoryServiceInterface
             throw new ValidationException($errors, json_encode($errors));
         }
 
-        $sameCategory = $this->repository->findByName($categoryDto->name);
+        $sameCategory = $this->repository->findByName($categoryDto->companyId, $categoryDto->name);
         if (!empty($sameCategory)) {
             throw new \Exception('Name already exists');
         }
@@ -81,7 +81,7 @@ class CategoryService implements CategoryServiceInterface
             throw new ValidationException($errors, json_encode($errors));
         }
 
-        $sameCategory = $this->repository->findByName($categoryDto->name);
+        $sameCategory = $this->repository->findByName($categoryDto->companyId, $categoryDto->name);
         if (!empty($sameCategory) && $sameCategory->getId() !== $id) {
             throw new \Exception('Name already exists');
         }

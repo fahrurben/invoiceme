@@ -17,6 +17,11 @@ class InvoiceRepository extends BaseRepository
     {
         $param_key = 0;
 
+        if (!empty($dto->companyId)) {
+            $qb->andWhere($qb->expr()->eq('o.companyId', "?{$param_key}"));
+            $qb->setParameter($param_key, $dto->companyId);
+        }
+
         if (!empty($dto->customerName)) {
             $qb->andWhere($qb->expr()->like('o.customerName', "?{$param_key}"));
             $qb->setParameter($param_key, "%{$dto->customerName}%");

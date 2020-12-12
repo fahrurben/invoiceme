@@ -63,7 +63,7 @@ class ItemService implements ItemServiceInterface
             throw new ValidationException($errors, json_encode($errors));
         }
 
-        $sameNameItem = $this->repository->findByName($itemDto->name);
+        $sameNameItem = $this->repository->findByName($itemDto->companyId, $itemDto->name);
         if (!empty($sameNameItem)) {
             throw new \Exception('Name already exists');
         }
@@ -105,7 +105,7 @@ class ItemService implements ItemServiceInterface
             throw new ValidationException($errors, json_encode($errors));
         }
 
-        $sameNameItem = $this->repository->findByName($itemDto->name);
+        $sameNameItem = $this->repository->findByName($itemDto->companyId, $itemDto->name);
         if (!empty($sameNameItem) && $sameNameItem->getId() !== $id) {
             throw new \Exception('Name already exists');
         }

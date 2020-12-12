@@ -33,6 +33,7 @@ class InvoiceController extends Controller
     )
     {
         $searchDto = new InvoiceSearchDto();
+        $searchDto->companyId = $request->get('companyId');
         $searchDto->customerName = $request->get('customerName');
         $searchDto->issueFrom = $request->get('issueFrom');
         $searchDto->issueTo = $request->get('issueTo');

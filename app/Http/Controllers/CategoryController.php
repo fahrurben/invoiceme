@@ -26,6 +26,7 @@ class CategoryController extends Controller
     {
         $searchDto = new CategoryDto();
         $searchDto->name = $request->get('name');
+        $searchDto->companyId = $request->get('companyId');
         $searchDto->isActive = !empty($request->get('isActive')) ? $request->get('isActive') : null;
 
         $page = $request->get('page') ?? 1;

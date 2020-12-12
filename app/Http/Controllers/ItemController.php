@@ -34,6 +34,7 @@ class ItemController extends Controller
     {
         $searchDto = new ItemDto();
         $searchDto->name = $request->get('name');
+        $searchDto->companyId = $request->get('companyId');
         $searchDto->categoryId = !empty($request->get('category')) ? $request->get('category') : null;
         $searchDto->type = !empty($request->get('type')) ? $request->get('type') : null;
         $searchDto->isActive = !empty($request->get('isActive')) ? $request->get('isActive') : null;
