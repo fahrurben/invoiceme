@@ -24,7 +24,7 @@ class ItemRepository extends BaseRepository
         $qb->select('i')
             ->from(Item::class, 'i')
             ->where('i.name = ?1')
-            ->andWhere('c.companyId = ?2')
+            ->andWhere('i.companyId = ?2')
             ->setParameter(1, $name)
             ->setParameter(2, $companyId);
 
