@@ -9,6 +9,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Domain\Auth\Models\RegisterUserDto;
+use App\Domain\Auth\Services\UserService;
+use App\Domain\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,5 +49,28 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function register(Request $request)
+    {
+        return view('register');
+    }
+
+    public function registerSubmit(Request $request, UserService $userService)
+    {
+        try {
+            $data = $request->json()->all();
+            $userDto = new RegisterUserDto();
+            $userDto->fromArray($data);
+
+
+            $userService->register($userDto);
+
+            return response()->json(['message' => 'Register success']);
+        } catch (ValidationException $exception) {
+            return response()->json(['validation' => $exception->getArrError()], 500);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], 500);
+        }
     }
 }

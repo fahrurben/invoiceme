@@ -30346,6 +30346,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Login",
+  props: ['baseUrl'],
   data: function data() {
     return {
       email: '',
@@ -30389,6 +30390,131 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee, null, [[1, 8]]);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring/index.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "Register",
+  props: ['baseUrl'],
+  data: function data() {
+    return {
+      error: '',
+      name: '',
+      email: '',
+      password: '',
+      companyName: '',
+      companyEmail: '',
+      address: '',
+      city: '',
+      phone: '',
+      formValidation: {
+        name: '',
+        email: '',
+        password: '',
+        companyName: '',
+        companyEmail: '',
+        address: '',
+        city: '',
+        phone: ''
+      }
+    };
+  },
+  methods: {
+    register: function register() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var response, that, validations;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                response = null;
+                that = _this;
+                _context.prev = 2;
+                _context.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("register", _objectSpread({}, _this.$data));
+
+              case 5:
+                response = _context.sent;
+                UIkit.notification({
+                  message: response.data.message,
+                  status: 'success'
+                });
+
+                lodash__WEBPACK_IMPORTED_MODULE_2__.delay(function () {
+                  window.location.href = that.baseUrl + '/login';
+                }, 1000);
+
+                _context.next = 13;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](2);
+
+                if (lodash__WEBPACK_IMPORTED_MODULE_2__.has(_context.t0, "response.data.validation")) {
+                  validations = _context.t0.response.data.validation;
+
+                  lodash__WEBPACK_IMPORTED_MODULE_2__.forEach(validations, function (obj, key) {
+                    that.formValidation = _objectSpread(_objectSpread({}, that.formValidation), {}, _defineProperty({}, key, lodash__WEBPACK_IMPORTED_MODULE_2__.values(obj)[0]));
+                  });
+                } else {
+                  _this.create.error = _context.t0.response.data.message;
+                }
+
+              case 13:
+                _context.prev = 13;
+                _this.isLoading = false;
+                return _context.finish(13);
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[2, 10, 13, 16]]);
       }))();
     }
   }
@@ -31101,6 +31227,9 @@ var validationLineDefault = {
           }
         }, _callee, null, [[2, 10, 13, 16]]);
       }))();
+    },
+    cancel: function cancel() {
+      window.location.href = this.baseUrl;
     }
   }
 });
@@ -31420,6 +31549,9 @@ var validationLineDefault = {
           }
         }, _callee, null, [[2, 10, 13, 16]]);
       }))();
+    },
+    cancel: function cancel() {
+      window.location.href = this.baseUrl;
     }
   }
 });
@@ -32073,10 +32205,10 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"email":"data","password":"data","error":"data","login":"options"} ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"baseUrl\":\"props\",\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"baseUrl":"props","email":"data","password":"data","error":"data","login":"options"} ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -32154,7 +32286,7 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 );
 
 var _hoisted_13 = {
-  "class": "uk-margin"
+  "class": "uk-margin uk-clearfix"
 };
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
@@ -32184,8 +32316,273 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.login.apply($options, arguments);
     }, ["prevent"])),
+    "class": "uk-button uk-button-primary uk-float-right"
+  }, "Login"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    "class": "uk-link-text uk-float-left uk-margin-small-top",
+    href: $props.baseUrl + '/register'
+  }, "Register", 8
+  /* PROPS */
+  , ["href"])])])])])])])]);
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={\"baseUrl\":\"props\",\"error\":\"data\",\"name\":\"data\",\"email\":\"data\",\"password\":\"data\",\"companyName\":\"data\",\"companyEmail\":\"data\",\"address\":\"data\",\"city\":\"data\",\"phone\":\"data\",\"formValidation\":\"data\",\"register\":\"options\"}":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={"baseUrl":"props","error":"data","name":"data","email":"data","password":"data","companyName":"data","companyEmail":"data","address":"data","city":"data","phone":"data","formValidation":"data","register":"options"} ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("data-v-78e2d335");
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-78e2d335");
+
+var _hoisted_1 = {
+  "class": "uk-container"
+};
+var _hoisted_2 = {
+  "class": "uk-grid uk-flex-center uk-flex-middle",
+  style: {
+    "height": "100vh"
+  }
+};
+var _hoisted_3 = {
+  "class": "uk-card uk-card-default uk-card-body",
+  style: {
+    width: 500 + 'px'
+  }
+};
+var _hoisted_4 = {
+  "class": "uk-fieldset"
+};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", {
+  "class": "uk-legend"
+}, "Register", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
+  key: 0,
+  "class": "uk-alert-danger",
+  "uk-alert": ""
+};
+var _hoisted_7 = {
+  "class": "uk-margin"
+};
+var _hoisted_8 = {
+  "class": "uk-inline uk-width-1-1"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "uk-form-icon",
+  "uk-icon": "icon: user"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  key: 0,
+  "class": "uk-text-danger"
+};
+var _hoisted_11 = {
+  "class": "uk-margin"
+};
+var _hoisted_12 = {
+  "class": "uk-inline uk-width-1-1"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "uk-form-icon",
+  "uk-icon": "icon: lock"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  key: 0,
+  "class": "uk-text-danger"
+};
+var _hoisted_15 = {
+  "class": "uk-margin"
+};
+var _hoisted_16 = {
+  "class": "uk-inline uk-width-1-1"
+};
+var _hoisted_17 = {
+  key: 0,
+  "class": "uk-text-danger"
+};
+var _hoisted_18 = {
+  "class": "uk-margin"
+};
+var _hoisted_19 = {
+  "class": "uk-inline uk-width-1-1"
+};
+var _hoisted_20 = {
+  key: 0,
+  "class": "uk-text-danger"
+};
+var _hoisted_21 = {
+  "class": "uk-margin"
+};
+var _hoisted_22 = {
+  "class": "uk-inline uk-width-1-1"
+};
+var _hoisted_23 = {
+  key: 0,
+  "class": "uk-text-danger"
+};
+var _hoisted_24 = {
+  "class": "uk-margin"
+};
+var _hoisted_25 = {
+  "class": "uk-inline uk-width-1-1"
+};
+var _hoisted_26 = {
+  key: 0,
+  "class": "uk-text-danger"
+};
+var _hoisted_27 = {
+  "class": "uk-margin"
+};
+var _hoisted_28 = {
+  "class": "uk-inline uk-width-1-1"
+};
+var _hoisted_29 = {
+  key: 0,
+  "class": "uk-text-danger"
+};
+var _hoisted_30 = {
+  "class": "uk-margin"
+};
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
+
+var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", _hoisted_4, [_hoisted_5, $data.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.error), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": {
+      'uk-input': true,
+      'uk-form-danger': $data.formValidation.email != ''
+    },
+    type: "text",
+    placeholder: "Email",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.email = $event;
+    })
+  }, null, 2
+  /* CLASS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.email]])]), $data.formValidation.email != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.formValidation.email), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": {
+      'uk-input': true,
+      'uk-form-danger': $data.formValidation.password != ''
+    },
+    type: "password",
+    placeholder: "Password",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.password = $event;
+    })
+  }, null, 2
+  /* CLASS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.password]])]), $data.formValidation.password != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.formValidation.password), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": {
+      'uk-input': true,
+      'uk-form-danger': $data.formValidation.name != ''
+    },
+    type: "text",
+    placeholder: "Fullname",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.name = $event;
+    })
+  }, null, 2
+  /* CLASS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.name]])]), $data.formValidation.name != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.formValidation.name), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": {
+      'uk-input': true,
+      'uk-form-danger': $data.formValidation.companyName != ''
+    },
+    type: "text",
+    placeholder: "Company Name",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.companyName = $event;
+    })
+  }, null, 2
+  /* CLASS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.companyName]])]), $data.formValidation.companyName != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.formValidation.companyName), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": {
+      'uk-input': true,
+      'uk-form-danger': $data.formValidation.address != ''
+    },
+    type: "text",
+    placeholder: "Address",
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $data.address = $event;
+    })
+  }, null, 2
+  /* CLASS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.address]])]), $data.formValidation.address != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.formValidation.address), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": {
+      'uk-input': true,
+      'uk-form-danger': $data.formValidation.city != ''
+    },
+    type: "text",
+    placeholder: "City",
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return $data.city = $event;
+    })
+  }, null, 2
+  /* CLASS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.city]])]), $data.formValidation.city != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.formValidation.city), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": {
+      'uk-input': true,
+      'uk-form-danger': $data.formValidation.phone != ''
+    },
+    type: "text",
+    placeholder: "Phone",
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return $data.phone = $event;
+    })
+  }, null, 2
+  /* CLASS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.phone]])]), $data.formValidation.phone != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.formValidation.phone), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.register.apply($options, arguments);
+    }, ["prevent"])),
     "class": "uk-button uk-button-primary"
-  }, "Login")])])])])])])]);
+  }, "Register"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    "class": "uk-link-text uk-margin-small-left",
+    href: $props.baseUrl + '/login'
+  }, "Cancel", 8
+  /* PROPS */
+  , ["href"])])])])])])])]);
 });
 
 /***/ }),
@@ -32650,10 +33047,10 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -33055,14 +33452,7 @@ var _hoisted_82 = {
   "class": "uk-text-right uk-margin-top"
 };
 
-var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "uk-button uk-button-default uk-modal-close",
-  type: "button"
-}, "Cancel", -1
-/* HOISTED */
-);
-
-var _hoisted_84 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ");
+var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -33303,10 +33693,16 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
     readonly: ""
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.invoiceTotalFormatted]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_83, _hoisted_84, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.invoiceTotalFormatted]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    "class": "uk-button uk-button-default uk-modal-close",
+    type: "button",
+    onClick: _cache[17] || (_cache[17] = function () {
+      return $options.cancel.apply($options, arguments);
+    })
+  }, "Cancel"), _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     "class": "uk-button uk-button-primary",
     type: "button",
-    onClick: _cache[17] || (_cache[17] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onClick: _cache[18] || (_cache[18] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.save.apply($options, arguments);
     }, ["prevent"]))
   }, "Save")])])])], 64
@@ -33316,10 +33712,10 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -33721,14 +34117,7 @@ var _hoisted_82 = {
   "class": "uk-text-right uk-margin-top"
 };
 
-var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "class": "uk-button uk-button-default uk-modal-close",
-  type: "button"
-}, "Cancel", -1
-/* HOISTED */
-);
-
-var _hoisted_84 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ");
+var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -33969,10 +34358,16 @@ var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, 
     readonly: ""
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.invoiceTotalFormatted]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_83, _hoisted_84, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.invoiceTotalFormatted]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    "class": "uk-button uk-button-default uk-modal-close",
+    type: "button",
+    onClick: _cache[17] || (_cache[17] = function () {
+      return $options.cancel.apply($options, arguments);
+    })
+  }, "Cancel"), _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     "class": "uk-button uk-button-primary",
     type: "button",
-    onClick: _cache[17] || (_cache[17] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onClick: _cache[18] || (_cache[18] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.save.apply($options, arguments);
     }, ["prevent"]))
   }, "Save")])])])], 64
@@ -35002,14 +35397,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_numeric_input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/numeric-input */ "./resources/js/components/numeric-input.vue");
 /* harmony import */ var _page_ButtonCounter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./page/ButtonCounter */ "./resources/js/page/ButtonCounter.vue");
 /* harmony import */ var _page_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./page/Login */ "./resources/js/page/Login.vue");
-/* harmony import */ var _page_category_Index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./page/category/Index */ "./resources/js/page/category/Index.vue");
-/* harmony import */ var _page_category_Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./page/category/Form */ "./resources/js/page/category/Form.vue");
-/* harmony import */ var _page_item_Index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./page/item/Index */ "./resources/js/page/item/Index.vue");
-/* harmony import */ var _page_item_Form__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./page/item/Form */ "./resources/js/page/item/Form.vue");
-/* harmony import */ var _page_invoice_Index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./page/invoice/Index */ "./resources/js/page/invoice/Index.vue");
-/* harmony import */ var _page_invoice_Create__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./page/invoice/Create */ "./resources/js/page/invoice/Create.vue");
-/* harmony import */ var _page_invoice_Edit__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./page/invoice/Edit */ "./resources/js/page/invoice/Edit.vue");
-/* harmony import */ var _page_invoice_Form__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./page/invoice/Form */ "./resources/js/page/invoice/Form.vue");
+/* harmony import */ var _page_Register__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./page/Register */ "./resources/js/page/Register.vue");
+/* harmony import */ var _page_category_Index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./page/category/Index */ "./resources/js/page/category/Index.vue");
+/* harmony import */ var _page_category_Form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./page/category/Form */ "./resources/js/page/category/Form.vue");
+/* harmony import */ var _page_item_Index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./page/item/Index */ "./resources/js/page/item/Index.vue");
+/* harmony import */ var _page_item_Form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./page/item/Form */ "./resources/js/page/item/Form.vue");
+/* harmony import */ var _page_invoice_Index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./page/invoice/Index */ "./resources/js/page/invoice/Index.vue");
+/* harmony import */ var _page_invoice_Create__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./page/invoice/Create */ "./resources/js/page/invoice/Create.vue");
+/* harmony import */ var _page_invoice_Edit__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./page/invoice/Edit */ "./resources/js/page/invoice/Edit.vue");
+/* harmony import */ var _page_invoice_Form__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./page/invoice/Form */ "./resources/js/page/invoice/Form.vue");
+
 
 
 
@@ -35048,14 +35445,15 @@ app.component('Pagination', _page_common_Pagination__WEBPACK_IMPORTED_MODULE_2__
 app.component('numeric-input', _components_numeric_input__WEBPACK_IMPORTED_MODULE_3__.default);
 app.component('button-counter', _page_ButtonCounter__WEBPACK_IMPORTED_MODULE_4__.default);
 app.component('login', _page_Login__WEBPACK_IMPORTED_MODULE_5__.default);
-app.component('category-index', _page_category_Index__WEBPACK_IMPORTED_MODULE_6__.default);
-app.component('form-category', _page_category_Form__WEBPACK_IMPORTED_MODULE_7__.default);
-app.component('item-index', _page_item_Index__WEBPACK_IMPORTED_MODULE_8__.default);
-app.component('form-item', _page_item_Form__WEBPACK_IMPORTED_MODULE_9__.default);
-app.component('invoice-index', _page_invoice_Index__WEBPACK_IMPORTED_MODULE_10__.default);
-app.component('invoice-create', _page_invoice_Create__WEBPACK_IMPORTED_MODULE_11__.default);
-app.component('invoice-edit', _page_invoice_Edit__WEBPACK_IMPORTED_MODULE_12__.default);
-app.component('form-invoice', _page_invoice_Form__WEBPACK_IMPORTED_MODULE_13__.default);
+app.component('register', _page_Register__WEBPACK_IMPORTED_MODULE_6__.default);
+app.component('category-index', _page_category_Index__WEBPACK_IMPORTED_MODULE_7__.default);
+app.component('form-category', _page_category_Form__WEBPACK_IMPORTED_MODULE_8__.default);
+app.component('item-index', _page_item_Index__WEBPACK_IMPORTED_MODULE_9__.default);
+app.component('form-item', _page_item_Form__WEBPACK_IMPORTED_MODULE_10__.default);
+app.component('invoice-index', _page_invoice_Index__WEBPACK_IMPORTED_MODULE_11__.default);
+app.component('invoice-create', _page_invoice_Create__WEBPACK_IMPORTED_MODULE_12__.default);
+app.component('invoice-edit', _page_invoice_Edit__WEBPACK_IMPORTED_MODULE_13__.default);
+app.component('form-invoice', _page_invoice_Form__WEBPACK_IMPORTED_MODULE_14__.default);
 document.addEventListener('DOMContentLoaded', function () {
   app.mount('#mainWrapper');
 }, false);
@@ -90246,12 +90644,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"email":"data","password":"data","error":"data","login":"options"} */ "./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}");
+/* harmony import */ var _Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_baseUrl_props_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"baseUrl":"props","email":"data","password":"data","error":"data","login":"options"} */ "./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"baseUrl\":\"props\",\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}");
 /* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/page/Login.vue?vue&type=script&lang=js");
 
 
 
-_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__.render
+_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_baseUrl_props_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__.render
 _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__scopeId = "data-v-97b9e772"
 /* hot reload */
 if (false) {}
@@ -90259,6 +90657,37 @@ if (false) {}
 _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/page/Login.vue"
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
+/***/ "./resources/js/page/Register.vue":
+/*!****************************************!*\
+  !*** ./resources/js/page/Register.vue ***!
+  \****************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _Register_vue_vue_type_template_id_78e2d335_scoped_true_bindings_baseUrl_props_error_data_name_data_email_data_password_data_companyName_data_companyEmail_data_address_data_city_data_phone_data_formValidation_data_register_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={"baseUrl":"props","error":"data","name":"data","email":"data","password":"data","companyName":"data","companyEmail":"data","address":"data","city":"data","phone":"data","formValidation":"data","register":"options"} */ "./resources/js/page/Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={\"baseUrl\":\"props\",\"error\":\"data\",\"name\":\"data\",\"email\":\"data\",\"password\":\"data\",\"companyName\":\"data\",\"companyEmail\":\"data\",\"address\":\"data\",\"city\":\"data\",\"phone\":\"data\",\"formValidation\":\"data\",\"register\":\"options\"}");
+/* harmony import */ var _Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Register.vue?vue&type=script&lang=js */ "./resources/js/page/Register.vue?vue&type=script&lang=js");
+
+
+
+_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Register_vue_vue_type_template_id_78e2d335_scoped_true_bindings_baseUrl_props_error_data_name_data_email_data_password_data_companyName_data_companyEmail_data_address_data_city_data_phone_data_formValidation_data_register_options___WEBPACK_IMPORTED_MODULE_0__.render
+_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__scopeId = "data-v-78e2d335"
+/* hot reload */
+if (false) {}
+
+_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/page/Register.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /***/ }),
 
@@ -90370,12 +90799,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} */ "./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}");
+/* harmony import */ var _Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} */ "./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}");
 /* harmony import */ var _Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js */ "./resources/js/page/invoice/Create.vue?vue&type=script&lang=js");
 
 
 
-_Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+_Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__.render
 _Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__scopeId = "data-v-3d5f64a0"
 /* hot reload */
 if (false) {}
@@ -90401,12 +90830,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} */ "./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}");
+/* harmony import */ var _Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} */ "./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}");
 /* harmony import */ var _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js */ "./resources/js/page/invoice/Edit.vue?vue&type=script&lang=js");
 
 
 
-_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__.render
 _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__scopeId = "data-v-b8ff8a84"
 /* hot reload */
 if (false) {}
@@ -90597,6 +91026,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/page/Register.vue?vue&type=script&lang=js":
+/*!****************************************************************!*\
+  !*** ./resources/js/page/Register.vue?vue&type=script&lang=js ***!
+  \****************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=script&lang=js .default */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Register.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -90821,12 +91270,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}":
-/*!************************************************************************************************************************************************************!*\
-  !*** ./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"email":"data","password":"data","error":"data","login":"options"} ***!
-  \************************************************************************************************************************************************************/
+/***/ "./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"baseUrl\":\"props\",\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"baseUrl":"props","email":"data","password":"data","error":"data","login":"options"} ***!
+  \******************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"email":"data","password":"data","error":"data","login":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"baseUrl":"props","email":"data","password":"data","error":"data","login":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -90834,9 +91283,29 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_baseUrl_props_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"email":"data","password":"data","error":"data","login":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_97b9e772_scoped_true_bindings_baseUrl_props_email_data_password_data_error_data_login_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={"baseUrl":"props","email":"data","password":"data","error":"data","login":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Login.vue?vue&type=template&id=97b9e772&scoped=true&bindings={\"baseUrl\":\"props\",\"email\":\"data\",\"password\":\"data\",\"error\":\"data\",\"login\":\"options\"}");
+
+
+/***/ }),
+
+/***/ "./resources/js/page/Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={\"baseUrl\":\"props\",\"error\":\"data\",\"name\":\"data\",\"email\":\"data\",\"password\":\"data\",\"companyName\":\"data\",\"companyEmail\":\"data\",\"address\":\"data\",\"city\":\"data\",\"phone\":\"data\",\"formValidation\":\"data\",\"register\":\"options\"}":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/page/Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={"baseUrl":"props","error":"data","name":"data","email":"data","password":"data","companyName":"data","companyEmail":"data","address":"data","city":"data","phone":"data","formValidation":"data","register":"options"} ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={"baseUrl":"props","error":"data","name":"data","email":"data","password":"data","companyName":"data","companyEmail":"data","address":"data","city":"data","phone":"data","formValidation":"data","register":"options"} .render */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_template_id_78e2d335_scoped_true_bindings_baseUrl_props_error_data_name_data_email_data_password_data_companyName_data_companyEmail_data_address_data_city_data_phone_data_formValidation_data_register_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_template_id_78e2d335_scoped_true_bindings_baseUrl_props_error_data_name_data_email_data_password_data_companyName_data_companyEmail_data_address_data_city_data_phone_data_formValidation_data_register_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={"baseUrl":"props","error":"data","name":"data","email":"data","password":"data","companyName":"data","companyEmail":"data","address":"data","city":"data","phone":"data","formValidation":"data","register":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/Register.vue?vue&type=template&id=78e2d335&scoped=true&bindings={\"baseUrl\":\"props\",\"error\":\"data\",\"name\":\"data\",\"email\":\"data\",\"password\":\"data\",\"companyName\":\"data\",\"companyEmail\":\"data\",\"address\":\"data\",\"city\":\"data\",\"phone\":\"data\",\"formValidation\":\"data\",\"register\":\"options\"}");
 
 
 /***/ }),
@@ -90901,12 +91370,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -90914,19 +91383,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Create_vue_vue_type_template_id_3d5f64a0_scoped_true_bindings_baseUrl_props_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={"baseUrl":"props","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Create.vue?vue&type=template&id=3d5f64a0&scoped=true&bindings={\"baseUrl\":\"props\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}");
 
 
 /***/ }),
 
-/***/ "./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -90934,9 +91403,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\"}");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Edit_vue_vue_type_template_id_b8ff8a84_scoped_true_bindings_baseUrl_props_invoice_data_items_data_form_data_formValidation_data_tax_data_lines_data_lineCreate_data_lineValidation_data_updatingIndex_data_lineUpdate_data_lineValidationUpdate_data_deletingIndex_data_lineCreateAmount_options_lineUpdateAmount_options_subTotal_options_subTotalFormatted_options_taxTotal_options_taxTotalFormatted_options_invoiceTotal_options_invoiceTotalFormatted_options_getItemName_options_showModalCreate_options_showModalUpdate_options_showModalDelete_options_validateLine_options_saveLine_options_updateLine_options_deleteLine_options_save_options_cancel_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={"baseUrl":"props","invoice":"data","items":"data","form":"data","formValidation":"data","tax":"data","lines":"data","lineCreate":"data","lineValidation":"data","updatingIndex":"data","lineUpdate":"data","lineValidationUpdate":"data","deletingIndex":"data","lineCreateAmount":"options","lineUpdateAmount":"options","subTotal":"options","subTotalFormatted":"options","taxTotal":"options","taxTotalFormatted":"options","invoiceTotal":"options","invoiceTotalFormatted":"options","getItemName":"options","showModalCreate":"options","showModalUpdate":"options","showModalDelete":"options","validateLine":"options","saveLine":"options","updateLine":"options","deleteLine":"options","save":"options","cancel":"options"} */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/page/invoice/Edit.vue?vue&type=template&id=b8ff8a84&scoped=true&bindings={\"baseUrl\":\"props\",\"invoice\":\"data\",\"items\":\"data\",\"form\":\"data\",\"formValidation\":\"data\",\"tax\":\"data\",\"lines\":\"data\",\"lineCreate\":\"data\",\"lineValidation\":\"data\",\"updatingIndex\":\"data\",\"lineUpdate\":\"data\",\"lineValidationUpdate\":\"data\",\"deletingIndex\":\"data\",\"lineCreateAmount\":\"options\",\"lineUpdateAmount\":\"options\",\"subTotal\":\"options\",\"subTotalFormatted\":\"options\",\"taxTotal\":\"options\",\"taxTotalFormatted\":\"options\",\"invoiceTotal\":\"options\",\"invoiceTotalFormatted\":\"options\",\"getItemName\":\"options\",\"showModalCreate\":\"options\",\"showModalUpdate\":\"options\",\"showModalDelete\":\"options\",\"validateLine\":\"options\",\"saveLine\":\"options\",\"updateLine\":\"options\",\"deleteLine\":\"options\",\"save\":\"options\",\"cancel\":\"options\"}");
 
 
 /***/ }),

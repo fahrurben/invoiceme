@@ -12,8 +12,9 @@ use App\Domain\Auth\Models\RegisterUserDto;
 use App\Domain\Auth\Models\User;
 use App\Domain\Auth\Repositories\UserRepository;
 use App\Domain\Company\Models\Company;
+use App\Domain\ValidationException;
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 
 class UserService implements UserServiceInterface
 {
@@ -42,9 +43,8 @@ class UserService implements UserServiceInterface
         $validator->validate();
 
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $error = $errors->firstOfAll();
-            throw ValidationException::withMessages($error);
+            $errors = $validator->errors()->toArray();
+            throw new ValidationException($errors, json_encode($errors));
         }
 
         $sameEmailUsers = $this->repository->findBy(['email' => $registerUserDto->email]);
@@ -55,7 +55,7 @@ class UserService implements UserServiceInterface
         $newUser = new User();
         $newUser->setName($registerUserDto->name);
         $newUser->setEmail($registerUserDto->email);
-        $newUser->setPassword($registerUserDto->password);
+        $newUser->setPassword(Hash::make($registerUserDto->password));
         $this->entityManager->persist($newUser);
 
         $company = new Company();

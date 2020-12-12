@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('login', 'AuthController@login')->name('login');
 Route::post('login', 'AuthController@authenticate')->name('authenticate');
+Route::get('register', 'AuthController@register')->name('register');
+Route::post('register', 'AuthController@registersubmit')->name('register');
 
 Route::group( ['middleware' => ['auth', 'check.company'] ], function()
 {

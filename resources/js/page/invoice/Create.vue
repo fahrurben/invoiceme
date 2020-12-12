@@ -207,7 +207,7 @@
 
         <div class="uk-text-right uk-margin-top">
             <div>
-                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                <button class="uk-button uk-button-default uk-modal-close" type="button" @click="cancel">Cancel</button>
                 &nbsp;
                 <button class="uk-button uk-button-primary" type="button" @click.prevent="save">Save</button>
             </div>
@@ -391,6 +391,9 @@
                 } finally {
                     this.isLoading = false
                 }
+            },
+            cancel() {
+                window.location.href = this.baseUrl;
             }
         }
 

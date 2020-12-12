@@ -35,6 +35,18 @@ class RegisterUserDto
     {
     }
 
+    public function fromArray($data)
+    {
+        $this->name = $data['name'] ?? '';
+        $this->email  = $data['email'] ?? '';
+        $this->password  = $data['password'] ?? '';
+        $this->companyName = $data['companyName'] ?? '';
+        $this->address  = $data['address'] ?? '';
+        $this->city  = $data['city'] ?? '';
+        $this->phone  = $data['phone'] ?? '';
+        $this->companyEmail  = $data['companyEmail'] ?? '';
+    }
+
     public function getCreateValidator(): Validation
     {
         $validator = new Validator;
@@ -47,7 +59,7 @@ class RegisterUserDto
             'address' => 'required',
             'city' => 'required',
             'phone' => 'nullable',
-            'companyEmail' => 'required|email',
+            'companyEmail' => 'email',
             ];
 
         return $validator->make((array)$this, $rules);

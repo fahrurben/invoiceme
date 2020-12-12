@@ -12310,6 +12310,8 @@ h3 {
   font-size: 22px;
   font-weight: bold;
   background: #6d7fcc;
+  height: 80px;
+  box-sizing: border-box;
 }
 #sidebar ul p {
   color: #fff;

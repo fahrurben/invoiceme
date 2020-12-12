@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="mainWrapper">
-        <login base-url="{{route('home')}}"></login>
+        <register base-url="{{route('home')}}"></register>
     </div>
 @endsection

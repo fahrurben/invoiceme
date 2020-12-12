@@ -26,8 +26,9 @@
                                 </div>
                             </div>
 
-                            <div class="uk-margin">
-                                <button @click.prevent="login" class="uk-button uk-button-primary">Login</button>
+                            <div class="uk-margin uk-clearfix">
+                                <button @click.prevent="login" class="uk-button uk-button-primary uk-float-right">Login</button>
+                                <a class="uk-link-text uk-float-left uk-margin-small-top" :href="baseUrl + '/register'">Register</a>
                             </div>
 
                         </fieldset>
@@ -43,6 +44,9 @@
 
     export default {
         name: "Login",
+        props: [
+            'baseUrl'
+        ],
         data() {
             return {
                 email: '',

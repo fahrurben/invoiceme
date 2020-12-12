@@ -6,6 +6,7 @@ import NumericInput from './components/numeric-input';
 
 import ButtonCounter from './page/ButtonCounter'
 import Login from './page/Login'
+import Register from './page/Register'
 import CategoryIndex from './page/category/Index'
 import FormCategory from './page/category/Form'
 
@@ -46,6 +47,7 @@ app.component('numeric-input', NumericInput)
 
 app.component('button-counter', ButtonCounter)
 app.component('login', Login)
+app.component('register', Register)
 app.component('category-index', CategoryIndex)
 app.component('form-category', FormCategory)
 
