@@ -54,7 +54,7 @@ class Invoice implements ArrayExpressible
     protected $customerEmail;
 
     /**
-     * @ORM\OneToMany(targetEntity="Line", mappedBy="invoice", cascade={"persist", "merge"})
+     * @ORM\OneToMany(targetEntity="Line", mappedBy="invoice", cascade={"persist", "merge", "remove"})
      * @var Invoice[] $lines
      */
     private $lines;

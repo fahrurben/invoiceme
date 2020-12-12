@@ -18,9 +18,7 @@ Route::post('login', 'AuthController@authenticate')->name('authenticate');
 
 Route::group( ['middleware' => ['auth', 'check.company'] ], function()
 {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('home');
+    Route::get('/', 'InvoiceController@index')->name('home');
 
     Route::get('category', 'CategoryController@index')->name('category.index');
     Route::get('category/detail/{id}', 'CategoryController@detail')->name('category.detail');
@@ -34,10 +32,12 @@ Route::group( ['middleware' => ['auth', 'check.company'] ], function()
     Route::post('item/{id}', 'ItemController@update')->name('item.update');
     Route::get('item/delete/{id}', 'ItemController@delete')->name('item.delete');
 
+    //Route::get('invoice', 'InvoiceController@index')->name('invoice.index');
     Route::get('invoice/create', 'InvoiceController@create')->name('invoice.create');
     Route::post('invoice/store', 'InvoiceController@store')->name('invoice.store');
     Route::get('invoice/edit/{id}', 'InvoiceController@edit')->name('invoice.edit');
     Route::post('invoice/update/{id}', 'InvoiceController@update')->name('invoice.update');
+    Route::get('invoice/delete/{id}', 'InvoiceController@delete')->name('invoice.delete');
 });
 
 

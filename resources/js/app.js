@@ -1,4 +1,5 @@
 import * as Vue from 'vue'
+import moment from 'moment'
 
 import Pagination from './page/common/Pagination';
 import NumericInput from './components/numeric-input';
@@ -11,6 +12,7 @@ import FormCategory from './page/category/Form'
 import ItemIndex from './page/item/Index'
 import FormItem from './page/item/Form'
 
+import InvoiceIndex from './page/invoice/Index'
 import InvoiceCreate from './page/invoice/Create'
 import InvoiceEdit from './page/invoice/Edit'
 import FormInvoice from './page/invoice/Form'
@@ -33,6 +35,9 @@ app.config.globalProperties.$filters = {
         value = value === "" ? "0" : value
         value = parseFloat(value)
         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    },
+    formatDate(value) {
+        return moment(value).format('YYYY-MM-DD')
     }
 }
 
@@ -47,6 +52,7 @@ app.component('form-category', FormCategory)
 app.component('item-index', ItemIndex)
 app.component('form-item', FormItem)
 
+app.component('invoice-index', InvoiceIndex)
 app.component('invoice-create', InvoiceCreate)
 app.component('invoice-edit', InvoiceEdit)
 app.component('form-invoice', FormInvoice)

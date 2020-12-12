@@ -9,7 +9,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Constant;
+use App\Domain\Invoice\Models\Invoice;
 use App\Domain\Invoice\Models\InvoiceDto;
+use App\Domain\Invoice\Models\InvoiceSearchDto;
 use App\Domain\Invoice\Repositories\InvoiceRepository;
 use App\Domain\Invoice\Services\InvoiceService;
 use App\Domain\Item\Repositories\ItemRepository;
@@ -19,6 +22,34 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param InvoiceRepository $repository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(
+        Request $request,
+        InvoiceRepository $repository
+    )
+    {
+        $searchDto = new InvoiceSearchDto();
+        $searchDto->customerName = $request->get('customerName');
+        $searchDto->issueFrom = $request->get('issueFrom');
+        $searchDto->issueTo = $request->get('issueTo');
+        $searchDto->dueFrom = $request->get('dueFrom');
+        $searchDto->dueTo = $request->get('dueTo');
+
+        $page = $request->get('page') ?? 1;
+        $searchResult = $repository->search(Invoice::class, $searchDto, $page, Constant::DEFAULT_PAGING_SIZE,'issueDate');
+        $arrInvoice = $searchResult->getArrayData();
+
+        return view('pages.invoice.index',[
+            'arrInvoice' => $arrInvoice,
+            'page' => $page,
+            'totalPage' => $searchResult->total_page,
+        ]);
+    }
+
     public function create(
         Request $request,
         InvoiceService $invoiceService,
@@ -94,5 +125,18 @@ class InvoiceController extends Controller
             return response()->json(['message' => $exception->getMessage()], 500);
         }
 
+    }
+
+    public function delete(
+        int $id,
+        InvoiceService $invoiceService
+    )
+    {
+        try {
+            $invoiceService->delete($id);
+            return response()->json(['message' => 'Delete data success']);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], 500);
+        }
     }
 }
