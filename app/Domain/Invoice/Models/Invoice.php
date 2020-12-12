@@ -8,6 +8,7 @@
 
 namespace App\Domain\Invoice\Models;
 
+use App\Domain\ArrayExpressible;
 use App\Domain\MultiTenantEntity;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
@@ -16,7 +17,7 @@ use /** @noinspection PhpUnusedAliasInspection */
  * @ORM\Entity(repositoryClass="\App\Domain\Invoice\Repositories\InvoiceRepository")
  * @ORM\Table(name="invoice")
  */
-class Invoice
+class Invoice implements ArrayExpressible
 {
     use MultiTenantEntity;
 
@@ -80,6 +81,18 @@ class Invoice
 
     public function __construct()
     {
+        $this->lines = [];
+    }
+
+    public function toArray()
+    {
+        $data = get_object_vars($this);
+        $data['lines'] = [];
+        foreach ($this->lines as $line) {
+            $data['lines'][] = $line->toArray();
+        }
+
+        return $data;
     }
 
     /**

@@ -8,6 +8,7 @@
 
 namespace App\Domain\Invoice\Models;
 
+use App\Domain\ArrayExpressible;
 use App\Domain\Item\Models\Item;
 use /** @noinspection PhpUnusedAliasInspection */
     Doctrine\ORM\Mapping as ORM;
@@ -16,7 +17,7 @@ use /** @noinspection PhpUnusedAliasInspection */
  * @ORM\Entity(repositoryClass="\App\Domain\Invoice\Repositories\LineRepository")
  * @ORM\Table(name="invoice_line")
  */
-class Line
+class Line implements ArrayExpressible
 {
     /**
      * @ORM\Id
@@ -54,6 +55,14 @@ class Line
 
     public function __construct()
     {
+    }
+
+    public function toArray()
+    {
+        $data = get_object_vars($this);
+        $data['item'] = $this->item->toArray();
+
+        return $data;
     }
 
     /**

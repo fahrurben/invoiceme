@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "flatpickr": "^4.6.6",
+        "moment": "^2.29.1",
         "query-string": "^6.13.7",
         "uikit": "^3.5.10",
         "vue-axios": "^3.2.0"

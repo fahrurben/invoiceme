@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Domain\Invoice\Models\InvoiceDto;
+use App\Domain\Invoice\Repositories\InvoiceRepository;
 use App\Domain\Invoice\Services\InvoiceService;
 use App\Domain\Item\Repositories\ItemRepository;
 use App\Domain\ValidationException;
@@ -46,6 +47,47 @@ class InvoiceController extends Controller
             $invoiceService->create($invoiceDto);
 
             return response()->json(['message' => 'Create data success']);
+        } catch (ValidationException $exception) {
+            return response()->json(['validation' => $exception->getArrError()], 500);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], 500);
+        }
+
+    }
+
+    public function edit(
+        int $id,
+        Request $request,
+        InvoiceService $invoiceService,
+        InvoiceRepository $invoiceRepository,
+        ItemRepository $itemRepository
+    )
+    {
+        $invoice = $invoiceRepository->find($id);
+        $itemList = $itemRepository->getAllActive($request->get('companyId'));
+        $arrItem = CommonHelper::getArrayFromCollection($itemList);
+
+        return view('pages.invoice.edit',[
+            'invoice' => $invoice->toArray(),
+            'arrItem' => $arrItem
+        ]);
+    }
+
+    public function update(
+        int $id,
+        Request $request,
+        InvoiceService $invoiceService
+    )
+    {
+        try {
+            $data = $request->json()->all();
+            $invoiceDto = new InvoiceDto();
+            $invoiceDto->fromArray($data);
+            $invoiceDto->companyId = $request->get('companyId');
+
+            $invoiceService->update($id, $invoiceDto);
+
+            return response()->json(['message' => 'Update data success']);
         } catch (ValidationException $exception) {
             return response()->json(['validation' => $exception->getArrError()], 500);
         } catch (\Exception $exception) {

@@ -36,6 +36,8 @@ Route::group( ['middleware' => ['auth', 'check.company'] ], function()
 
     Route::get('invoice/create', 'InvoiceController@create')->name('invoice.create');
     Route::post('invoice/store', 'InvoiceController@store')->name('invoice.store');
+    Route::get('invoice/edit/{id}', 'InvoiceController@edit')->name('invoice.edit');
+    Route::post('invoice/update/{id}', 'InvoiceController@update')->name('invoice.update');
 });
 
 

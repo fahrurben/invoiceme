@@ -12,6 +12,7 @@ import ItemIndex from './page/item/Index'
 import FormItem from './page/item/Form'
 
 import InvoiceCreate from './page/invoice/Create'
+import InvoiceEdit from './page/invoice/Edit'
 import FormInvoice from './page/invoice/Form'
 
 window.UIkit = require("uikit")
@@ -47,6 +48,7 @@ app.component('item-index', ItemIndex)
 app.component('form-item', FormItem)
 
 app.component('invoice-create', InvoiceCreate)
+app.component('invoice-edit', InvoiceEdit)
 app.component('form-invoice', FormInvoice)
 
 document.addEventListener('DOMContentLoaded', function(){
