@@ -19,6 +19,7 @@ use App\Domain\Item\Repositories\ItemRepository;
 use App\Domain\ValidationException;
 use App\Helper\CommonHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class InvoiceController extends Controller
 {
@@ -108,10 +109,13 @@ class InvoiceController extends Controller
     public function update(
         int $id,
         Request $request,
-        InvoiceService $invoiceService
+        InvoiceService $invoiceService,
+        InvoiceRepository $invoiceRepository
     )
     {
         try {
+            Gate::authorize('update-own', $invoiceRepository->find($id));
+
             $data = $request->json()->all();
             $invoiceDto = new InvoiceDto();
             $invoiceDto->fromArray($data);
@@ -130,10 +134,13 @@ class InvoiceController extends Controller
 
     public function delete(
         int $id,
-        InvoiceService $invoiceService
+        InvoiceService $invoiceService,
+        InvoiceRepository $invoiceRepository
     )
     {
         try {
+            Gate::authorize('update-own', $invoiceRepository->find($id));
+
             $invoiceService->delete($id);
             return response()->json(['message' => 'Delete data success']);
         } catch (\Exception $exception) {

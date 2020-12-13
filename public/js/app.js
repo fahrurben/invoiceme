@@ -30400,7 +30400,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 response = _context.sent;
                 // Todo: Remove this hardcode
-                window.location = "/";
+                window.location = _this.baseUrl;
                 _context.next = 11;
                 break;
 

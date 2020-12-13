@@ -88,6 +88,7 @@ class ItemController extends Controller
     )
     {
         try {
+            Gate::authorize('view-own', $repository->find($id));
             $item = $repository->find($id);
 
             return response()->json($item->toArray());
@@ -100,10 +101,13 @@ class ItemController extends Controller
     public function update(
         int $id,
         Request $request,
-        ItemService $itemService
+        ItemService $itemService,
+        ItemRepository $itemRepository
     )
     {
         try {
+            Gate::authorize('update-own', $itemRepository->find($id));
+
             $data = $request->json()->all();
             $itemDto = new ItemDto();
             $itemDto->fromArray($data);
@@ -123,10 +127,13 @@ class ItemController extends Controller
 
     public function delete(
         int $id,
-        ItemService $itemService
+        ItemService $itemService,
+        ItemRepository $itemRepository
     )
     {
         try {
+            Gate::authorize('update-own', $itemRepository->find($id));
+
             $itemService->delete($id);
             return response()->json(['message' => 'Delete data success']);
         } catch (\Exception $exception) {

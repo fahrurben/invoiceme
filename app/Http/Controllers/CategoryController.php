@@ -16,6 +16,7 @@ use App\Domain\Item\Services\CategoryService;
 use App\Domain\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -69,6 +70,7 @@ class CategoryController extends Controller
     )
     {
         try {
+            Gate::authorize('view-own', $repository->find($id));
             $category = $repository->find($id);
 
             return response()->json($category->toArray());
@@ -80,10 +82,13 @@ class CategoryController extends Controller
     public function update(
         int $id,
         Request $request,
-        CategoryService $categoryService
+        CategoryService $categoryService,
+        CategoryRepository $categoryRepository
     )
     {
         try {
+            Gate::authorize('update-own', $categoryRepository->find($id));
+
             $data = $request->json()->all();
             $categoryDto = new CategoryDto();
             $categoryDto->fromArray($data);
@@ -103,10 +108,13 @@ class CategoryController extends Controller
 
     public function delete(
         int $id,
-        CategoryService $categoryService
+        CategoryService $categoryService,
+        CategoryRepository $categoryRepository
     )
     {
         try {
+            Gate::authorize('update-own', $categoryRepository->find($id));
+
             $categoryService->delete($id);
             return response()->json(['message' => 'Delete data success']);
         } catch (\Exception $exception) {

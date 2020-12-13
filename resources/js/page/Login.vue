@@ -62,7 +62,7 @@
                         { email: this.email, password: this.password })
 
                     // Todo: Remove this hardcode
-                    window.location = "/"
+                    window.location = this.baseUrl
                 } catch (error) {
                     this.error = error.response.data.message;
                 }
